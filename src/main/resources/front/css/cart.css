@@ -5,5 +5,260 @@
     width: 66px;
     height: 73.39px;
     left: 168px;
-    top: 208.11px;
+    top: 137px;
+}
+/* continue shopping */
+
+.continue_shopping_text{
+    position: absolute;
+    left: 12%;
+    right: 73.55%;
+    top: 12.79%;
+    bottom: 83.55%;
+
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 39px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #9E591F;
+
+    transform: matrix(1, 0, 0.01, 1, 0, 0);
+}
+/* Your Cart */
+.your_cart_text{
+    position: absolute;
+    width: 316px;
+    height: 74.48px;
+    left: 11%;
+    top: 230px;
+
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #9E591F;
+}
+/* YOUR ORDER (2 ITEM) */
+.your_order{
+    position: absolute;
+    width: 424px;
+    height: 64.63px;
+    left: 10.5%;
+    top: 320px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #9E591F;
+
+}
+/* Rectangles */
+
+.rectangle1{
+    position: absolute;
+    width: 1548px;
+    height: 258.5px;
+    left: 188px;
+    top: 500px;
+
+    background: #EADDD1;
+    border-radius: 30px;
+}
+.rect1_image{
+    position: relative;
+    margin-top:30px;
+    margin-left: 40px;
+    width: 180px;
+    height: 197.16px;
+    border-radius: 30px;
+}
+.rectangle1_coffee_name{
+    position: relative;
+    top: -155px;
+    width: 350px;
+    height: 54.77px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+.rectangle2{
+    position: absolute;
+    width: 1548px;
+    height: 258.5px;
+    left: 188px;
+    top: 800px;
+
+    background: #EADDD1;
+    border-radius: 30px;
+}
+.rect2_image{
+    position: relative;
+    margin-top:30px;
+    margin-left: 40px;
+    width: 180px;
+    height: 197.16px;
+    border-radius: 30px;
+}
+.rectangle2_coffee_name{
+    position: relative;
+    top: -155px;
+    width: 350px;
+    height: 54.77px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+.price{
+    position: relative;
+    width: 301px;
+    height: 44.91px;
+    top: -120px;
+    left:650px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+
+}
+.rectangle_coffee_description{
+    position: relative;
+    top: -90px;
+    left: -600px;
+    width: 342px;
+    height: 35.05px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 44px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.delete_item_buttom{
+    position: relative;
+    width: 52px;
+    height: 50.39px;
+    display: inline-block;
+    left:15px;
+
+}
+.minus_buttom{
+    position: relative;
+    left: -900px;
+    width: 34px;
+    height: 37.24px;
+    display: inline-block;
+}
+.add_buttom{
+    position: relative;
+    left: -900px;
+    width: 34px;
+    height: 37.24px;
+    display: inline-block;
+}
+.amount{
+    position: relative;
+    width: 34px;
+    height: 27.38px;
+    top: -5px;
+    left: -900px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 44px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+
+    border: 1px solid #000000;
+}
+.rectangle3{
+    position: absolute;
+    width: 1548px;
+    height: 40px;
+    left: 188px;
+    top: 1300px;
+
+    background: #F7F7F7;
+    border-radius: 30px;
+}
+/* ORDER TOTAL: $11 */
+.order_total{
+    position: absolute;
+    width: 373px;
+    height: 99.68px;
+    left: 1371px;
+    top: 1050px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+/* checkout button */
+.checkout_button{
+    position: relative;
+    width: 327.6px;
+    height: 109.78px;
+    left: 795.7px;
+    top: 1100px;
+    background: #9E591F;
+    border-radius: 30px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    /* display: flex; */
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
 }
