@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/headingFooter.css">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <header>
+
+        <div class = "shopname">
+            <a href="">
+                <img src="/front/image/logo.svg" alt="Cafe logo">
+                
+            </a>
+              <h1>Soul Cafe</h1> 
+        </div>
+         
+        <div class = "icons">
+            <a href=""><img src="/front/image/profile.svg" alt="profile"></a>
+            <a href=""><img src="/front/image/cart.svg" alt="cart"></a>
+            <img src="/front/image/logout.svg" alt="logout">
+        </div>
+    </header>
+
+    <main>
+        <div class = "banner">
+            <img src="/front/image/coffeeCup.png" alt="">
+
+            <div class = "sentences">
+                <p>
+                    <em>Enjoying <span>Soul</span>  Coffee In The Morning</em> 
+                </p>
+
+                <p>
+                    Soul Cafe is the best cafe in the Melbourne,
+                    we provide your soul with refreshing coffee every morning
+                    register and start now!☕️
+                </p>
+
+                <p>Register and Login to Enjoy!</p>                
+            </div>
+
+        </div>
+
+        <div class = "products">
+            <h1>Our Products</h1>
+            <div class = "products-list" id="products">
+                <div class = "product">
+                    <img src="/front/image/espresso.png" alt="espresso img">
+                    <p>espresso</p>
+                    <p>$5</p>
+                    <p>5kal</p>
+                    <p>origin:</p>
+                    <a href=""><button>add to cart</button></a>
+                </div>
+                <div class = "product">
+                    <img src="/front/image/macchiato.png" alt="macchiato img">
+                    <p>macchiato</p>
+                    <p>$5</p>
+                    <p>30kal</p>
+                    <p>origin:</p>
+                    <a href=""><button>add to cart</button></a>
+                </div>
+                <div class = "product">
+                    <img src="/front/image/longBlack.png" alt="long black img">
+                    <p>long&nbspblack</p>
+                    <p>$5</p>
+                    <p>4kal</p>
+                    <p>origin:</p>
+                    <a href=""><button>add to cart</button></a>
+                </div>
+                <div class = "product">
+                    <img src="/front/image/flatWhite.png" alt="flat white img">
+                    <p>{{name}}</p>
+                    <p>$5</p>
+                    <p>153kal</p>
+                    <p>origin:</p>
+                    <el-button type="text" @click="dialogVisible = true">add to cart</el-button>
+                </div>
+
+                <div class = "product">
+                    <img src="/front/image/coldBrew.png" alt="cold brew img">
+                    <p>cold&nbspbrew</p>
+                    <p>$5</p>
+                    <p>56kal</p>
+                    <p>origin:</p>
+                    <a href=""><button>add to cart</button></a>
+                </div>
+                <div class = "product">
+                    <img src="/front/image/latte.png" alt="latte img">
+                    <p>latte</p>
+                    <p>$5</p>
+                    <p>42kal</p>
+                    <p>origin:</p>
+                    <a href=""><button>add to cart</button></a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </main>
+
+    <footer>
+        @Copywrite by Soul Cafe
+    </footer>
+    <script type="text/javascript">
+
+        const v=new Vue({
+            el:'#products',
+            data:{
+                name:'flat white'
+            },
+            methods:{
+                showItem(){
+                    alert("flat white")
+                }
+            }
+        })
+        console.log(v)
+    </script>
+    <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="30%"
+            :before-close="handleClose">
+        <span>这是一段信息</span>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+    </el-dialog>
+
+    <script>
+        export default {
+            data() {
+                return {
+                    dialogVisible: false
+                };
+            },
+            methods: {
+                handleClose(done) {
+                    this.$confirm('确认关闭？')
+                        .then(_ => {
+                            done();
+                        })
+                        .catch(_ => {});
+                }
+            }
+        };
+    </script>
+</body>
+</html>

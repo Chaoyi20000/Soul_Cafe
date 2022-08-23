@@ -1,0 +1,63 @@
+form{
+    align-items: center;
+    background: #fff;
+    border-radius: 30px;
+    padding: 30px;
+    height: fit-content;
+    width: fit-content;
+}
+
+form p{
+    text-align: center;
+    color: #6D3E16;
+    font-size: 30px;
+}
+form a{
+    margin-left: 90%;
+    display: inline;
+}
+label, input{
+    margin-left: 10%;
+}
+
+input[type=text]{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 9%;
+    box-sizing: border-box;
+    background: transparent;
+    border: solid #9F9F9F;
+    outline: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+input[type=num] {
+    width: 26%;
+    padding: 12px 20px;
+    margin: 8px 9%;
+    box-sizing: border-box;
+    background: transparent;
+    border: solid #9F9F9F;
+    outline: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+input#cvv {
+    margin-left: 19%;
+}
+input[type=text]:focus {
+    border: none;
+    border: 2px solid #8A8A8A;
+}
+.cvv{
+    margin-left: 30%;
+}
+input[type=button]{
+    padding: 12px 20px;
+    margin: 22px 9%;
+    width: 80%;
+
+    background: transparent;
+    border: solid #9F9F9F;
+}
+
