@@ -1,0 +1,56 @@
+main{
+
+    padding-top: 20px;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+main a{
+    text-decoration: none;
+    color: #9E591F;
+}
+
+a img, a p{
+    display: inline;
+    font-size: large;
+}
+h1{
+    color: black;
+    font-family: 'Courier New';
+}
+h1 p{
+    padding-left: 15vw;
+    margin-left: 5vw;
+    display: inline;
+}
+.profile{
+    margin-left: 15vw;
+}
+
+.edit{
+    padding: 0.5vw;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: #9E591F;
+
+}
+
+
+
+table{
+    margin-left: 30vw;
+}
+
+table th.a {
+    font-size: larger;
+    padding-top: 5vw;
+    text-align: left;
+
+}
+
+table th.b{
+    font-size: larger;
+    padding-top: 5vw;
+    text-align: left;
+}
