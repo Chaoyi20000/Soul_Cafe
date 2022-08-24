@@ -54,112 +54,63 @@
         <div class = "products" id="products">
             <h1>Our Products</h1>
             <div class = "products-list">
-                <div class = "product">
-                    <img src="image/espresso.png" alt="espresso img">
-                    <p>espresso</p>
-                    <p>$5</p>
-                    <p>5kal</p>
+                <div v-for="product in products" class = "product">
+                    <el-image :src="getImage(product)" >
+                        <div slot="error" class="image-slot">
+                            <img style="width: 286px; height: 346px" src="./image/noImg.png"/>
+                        </div>
+                    </el-image>
+                    <p>{{product.name}}</p>
+                    <p>${{product.price}}</p>
+                    <p>500 Cal</p>
                     <p>origin:</p>
-                    <a href=""><button>add to cart</button></a>
-                </div>
-                <div class = "product">
-                    <img src="image/macchiato.png" alt="macchiato img">
-                    <p>macchiato</p>
-                    <p>$5</p>
-                    <p>30kal</p>
-                    <p>origin:</p>
-                    <a href=""><button>add to cart</button></a>
-                </div>
-                <div class = "product">
-                    <img src="image/longBlack.png" alt="long black img">
-                    <p>long&nbspblack</p>
-                    <p>$5</p>
-                    <p>4kal</p>
-                    <p>origin:</p>
-                    <a href=""><button>add to cart</button></a>
-                </div>
-                <div class = "product">
-                    <img src="image/flatWhite.png" alt="flat white img">
-                    <p>flat&nbspwhite</p>
-                    <p>$5</p>
-                    <p>153kal</p>
-                    <p>origin:</p>
-                    <el-button type="text" @click="dialogFormVisible = true">add to cart</el-button>
-                </div>
-                <div class = "product">
-                    <img src="image/coldBrew.png" alt="cold brew img">
-                    <p>cold&nbspbrew</p>
-                    <p>$5</p>
-                    <p>56kal</p>
-                    <p>origin:</p>
-                    <a href=""><button>add to cart</button></a>
-                </div>
-                <div class = "product">
-                    <img src="image/latte.png" alt="latte img">
-                    <p>latte</p>
-                    <p>$5</p>
-                    <p>42kal</p>
-                    <p>origin:</p>
-                    <a href=""><button>add to cart</button></a>
+                    <button class="cartButton" @click="displayTagMenu(product)">add to cart</button>
                 </div>
             </div>
 
-            <el-dialog class="item" :visible.sync="dialogFormVisible">
-
-
-                    <div class = "info">
-                        <img src="image/flatWhite.png" alt="flatWhite">
-                        <div class = "intro" >
-                            <p>
-                                {{name}}
-                            </p>
-                            <p>
-                                origin:
-                            </p>
-                            <p>{{kal}}kal</p>
-                            <p>$ <span>{{price}} </span></p>
+            <el-button type="text" @click="selectTagVisible = true">Dialog</el-button>
+            <el-dialog :visible.sync="selectTagVisible" width="400px">
+                <div class="topProductInfo">
+                    <div>
+                        <img :src="getImage(selected)" style="height: 150px; width: 120px"/>
+                    </div>
+                    <div class="topProductInfoRight">
+                        <div class="productTitle"><b>{{selected.name}}</b></div>
+                        <div style="font-size: 20px">800 Cal</div>
+                        <div class="redPrice">${{selected.price + selected.sizePrice + selected.basePrice}}</div>
+                    </div>
+                </div>
+                Choose Size
+              <div class="tagsArea">
+                  <div  v-for="(size, index) in coffeeTag.size">
+                      <div v-if="isSizeSelected(index)" class="tagSelected" @click="selectSize(size, index)">
+                          <span>{{size[0]}}</span>
+                          <span>{{size[1] === 0?'':'+'+size[1]}}</span>
+                      </div>
+                      <div v-else class="tagUnselected" @click="selectSize(size, index)">
+                          <span>{{size[0]}}</span>
+                          <span class="tagPrice">{{size[1] === 0?'':'+'+size[1]}}</span>
+                      </div>
+                  </div>
+                </div>
+                <div v-show="isCoffee">
+                Choose Base
+                <div class="tagsArea">
+                    <div  v-for="(base, index) in coffeeTag.base">
+                        <div v-if="isBaseSelected(index)" class="tagSelected" @click="selectBase(base, index)">
+                            <span>{{base[0]}}</span>
+                            <span>{{base[1] === 0?'':'+'+base[1]}}</span>
+                        </div>
+                        <div v-else class="tagUnselected" @click="selectBase(base, index)">
+                            <span>{{base[0]}}</span>
+                            <span class="tagPrice">{{base[1] === 0?'':'+'+base[1]}}</span>
                         </div>
                     </div>
-                    <el-form :model="form">
-                        <div class="choose">
-                            <p>Choose Size:</p>
-                            <el-select v-model="form.size" class="type"placeholder="">
-                                <el-option value="small">small</el-option>
-                                <el-option value="medium">medium <span>+$0.5</span></el-option>
-                                <el-option value="large">large <span>+$1.0</span></el-option>
-                            </el-select>
-
-                        </div>
-
-                        <div class="choose">
-                            <p>Choose Base:</p>
-
-                            <el-select v-model="form.size" class="type" placeholder="">
-                                <el-option value ="fc">full cream</el-option>
-                                <el-option value ="diet">diet <span> +$0.5</span></el-option>
-                                <el-option value="oat">oat milk<span> +$1.0</span></el-option>
-                                <el-option value="soy">soy milk<span> +$1.0</span></el-option>
-                            </el-select>
-
-                        </div>
-                        <div class="choose">
-                            <p>Choose Number:</p>
-                            <el-select v-model="form.size" class="type"placeholder="">
-                                <el-option value ="1">1</el-option>
-                                <el-option value ="2">2</el-option>
-                                <el-option value="3">3</el-option>
-                                <el-option value="4">4</el-option>
-                                <el-option value="5">5</el-option>
-                                <el-option value ="6">6</el-option>
-                                <el-option value ="7">7</el-option>
-                                <el-option value ="8">8</el-option>
-                            </el-select>
-                        </div>
-
-                        <el-button @click="dialogFormVisible=false" class="button">add to cart</el-button>
-                    </el-form>
-
-
+                </div>
+                </div>
+                <div style="text-align: center">
+                    <button class="tagSubmitButton" @click="addCart()">add to cart</button>
+                </div>
             </el-dialog>
         </div>
     </main>
@@ -167,26 +118,134 @@
     <footer>
         @Copywrite by Soul Cafe
     </footer>
+    <script src="js/axios/axios.min.js"></script>
     <script>
         new Vue({
-            el:"#products",
+            el:"main",
+
             data() {
                 return {
-                    dialogFormVisible: false,
-                    el:"#item",
-                    name:'flat white',
-                    price:5.5,
-                    kal:135,
-                    form: {
-                        size: '',
-                        date1: '',
-                        date2: '',
-                        delivery: false,
-
+                    dialogWidth: 0,
+                    selectTagVisible: false,
+                    products:[],
+                    isCoffee: false,
+                    selected:{
+                        name : '',
+                        extra : [],
+                        sizeFlags: [true, false, false],
+                        baseFlags: [false, false, false, false]
                     },
-                    formLabelWidth: '120px'
+                    coffeeTag: {
+                        size: [['small', 0.0],['medium', 0.5],['large', 1.0]],
+                        base: [['full cream', 0.0], ['diet', 1.0], ['oak milk', 1.0], ['soy milk', 1.0]],
+                    },
                 };
-            }
+            },
+            created() {
+                this.setDialogWidth()
+            },
+            mounted(){
+                axios({
+                    method: 'get',
+                    url: '/product'
+                }).then(res => {
+                    this.products = res.data.data;
+                });
+                window.onresize = () => {
+                    return (() => {
+                        this.setDialogWidth()
+                    })()
+                }
+            },
+            methods: {
+                getImage(product){
+                    return 'image/' + product.name.toLowerCase() + '.png';
+                },
+                displayTagMenu(product){
+                    this.selectTagVisible = true;
+                    this.isCoffee = product.categoryId === '1';
+                    this.selected = product;
+                    this.selected.price = product.price;
+                    this.selected.basePrice = 0;
+                    this.selected.sizePrice = 0;
+                    this.selected.size = 'small';
+                    this.selected.extra = [];
+                    this.selected['sizeFlags'] =  [true, false, false];
+                    this.selected['baseFlags'] = [false, false, false, false];
+                },
+                isSizeSelected(index){
+                    return this.selected['sizeFlags'][index];
+                },
+                isBaseSelected(index){
+                    return this.selected['baseFlags'][index];
+                },
+                selectSize(size, index){
+                    this.selected.sizePrice = 0;
+                    this.selected['sizeFlags'] =  [false, false, false];
+                    this.selected['sizeFlags'][index] = true;
+                    this.selected.size = size[0];
+                    this.selected.sizePrice += size[1];
+                    this.refreshDialog();
+                    console.log(this.selected)
+                },
+                selectBase(base, index){
+                    console.log(index)
+                    if(this.selected['baseFlags'][index] === false){
+                        this.selected['baseFlags'][index] = true;
+                        this.selected.basePrice += base[1];
+                        this.selected.extra.push(base[0])
+                    }else{
+                        this.selected['baseFlags'][index] = false;
+                        this.selected.basePrice -= base[1];
+                        let pos = this.selected.extra.indexOf(base[0]);
+                        if (pos !== -1) {
+                            this.selected.extra.splice(pos, 1);
+                        }
+                    }
+                    console.log(this.selected)
+                    this.refreshDialog();
+                },
+                refreshDialog(){
+                    this.selectTagVisible = false;
+                    this.selectTagVisible = true;
+                },
+                addCart(){
+                    let item = this.selected;
+                    let product = {
+                        productId: item.id,
+                        productName: item.name,
+                        extra: item.extra.toString(),
+                        size: item.size,
+                        amount: item.price + item.sizePrice + item.basePrice,
+                        customerId: '1'
+                    }
+                    this.selectTagVisible = false;
+                    axios({
+                        method: 'post',
+                        url: '/cart',
+                        product
+                    }).then(res => {
+                        if(res.data.code === 200){
+                            this.$message({
+                                message: res.data.message,
+                                type: 'success'
+                            });
+                        }
+                    }).catch(err => {
+                        this.$message.error('Error Occurred');
+                    })
+                },
+                setDialogWidth() {
+                    console.log(document.body.clientWidth)
+                    var val = document.body.clientWidth
+                    const def = 400 // 默认宽度
+                    if (val < def) {
+                        this.dialogWidth = '100%'
+                    } else {
+                        this.dialogWidth = def + 'px'
+                    }
+                }
+            },
         })
     </script>
 

@@ -48,7 +48,7 @@
     text-align: center;
 }
 
-.product button{
+.cartButton{
     font-size: 16px;
     color: #6D3E16;
     border: solid #9E591F;
@@ -57,7 +57,7 @@
     background-color: #F7F7F7;
 }
 
-.product button:hover{
+.cartButton:hover{
     background-color: #9E591F;
     color: white;
     /* font-weight: bold; */
@@ -109,6 +109,71 @@
     color: #572418;
     font-size: 22px;
 }
+
+.topProductInfo{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.topProductInfoRight{
+    padding-left: 80px;
+    line-height: 40px;
+}
+
+.redPrice{
+    color: red;
+    font-size: 20px;
+}
+
+.productTitle{
+    font-size: 25px;
+}
+
+.tagUnselected{
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+    padding: 8px;
+    margin: 10px 3px;
+    width: 90px;
+    color: #9E591F;
+}
+
+.tagSelected{
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+    padding: 8px;
+    margin: 10px 3px;
+    width: 90px;
+    color: white;
+    background-color: #9E591F;
+    border-color: #9E591F;
+}
+
+.tagPrice{
+    padding-left: 5px;
+    color: red;
+}
+
+.tagsArea{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.tagSubmitButton{
+    background-color: #9E591F;
+    border-style: none;
+    color: white;
+    border-radius: 20px;
+    font-size: 20px;
+    margin-top: 70px;
+    padding: 8px 20px;
+}
+
+
+
+
 @media screen and (max-width: 800px) {
     .banner{
         flex-direction: column;
