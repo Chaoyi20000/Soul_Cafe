@@ -26,8 +26,7 @@ input[type=text]{
     margin: 8px 9%;
     box-sizing: border-box;
     background: transparent;
-    border: solid;
-    border-color: #9F9F9F;
+    border: solid #9F9F9F;
     outline: none;
     -webkit-transition: 0.5s;
     transition: 0.5s;
@@ -38,8 +37,7 @@ input[type=num] {
     margin: 8px 9%;
     box-sizing: border-box;
     background: transparent;
-    border: solid;
-    border-color: #9F9F9F;
+    border: solid #9F9F9F;
     outline: none;
     -webkit-transition: 0.5s;
     transition: 0.5s;
@@ -60,7 +58,6 @@ input[type=button]{
     width: 80%;
 
     background: transparent;
-    border: solid;
-    border-color: #9F9F9F;
+    border: solid #9F9F9F;
 }
 
