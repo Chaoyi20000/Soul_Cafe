@@ -7,6 +7,11 @@
     <title>cart</title>
     <link rel="stylesheet" href="css/headingFooter.css">
     <link rel="stylesheet" href="css/cart.css">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
     <header>
@@ -87,15 +92,47 @@
         </div>
 
         <p>ORDER TOTAL: 11$</p>
-    
-        <button>checkout</button>
-        
-        
+        <div id="checkout">
+        <el-button type="text" @click="dialogFormVisible = true">add to cart</el-button>
+        <el-dialog class="item" :visible.sync="dialogFormVisible">
+            <form model="form">
+
+            <a href="" class="cross"><img src="image/cross.svg" alt="cross"></a>
+            <p>checkout </p>
+
+            <label for="phone">phone number</label><br>
+            <input type="text" id="phone" name="phone"><br>
+            <br>
+            <label for="card">credit card number</label><br>
+            <input type="text" id="card" name="card"><br>
+            <br>
+            <label for="expired">expired date</label>
+            <label for="cvv" class="cvv">cvv</label><br>
+            <input type="num" id="expired" name="expired">
+            <input type="num" id="cvv" name="cvv"><br>
+            <input type="button" value="Place Order">
+        </form>
+        </el-dialog>
+        </div>
 
     </main>
 
     <footer>
         @Copywrite by Soul Cafe
     </footer>
+    <script>
+        new Vue({
+            el:"#checkout",
+            data() {
+                return {
+                    dialogFormVisible: false,
+
+
+                };
+            }
+        })
+    </script>
+
+、
 </body>
 </html>

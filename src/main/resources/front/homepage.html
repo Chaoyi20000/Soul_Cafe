@@ -7,6 +7,11 @@
     <title>homepage</title>
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/headingFooter.css">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
     <header>
@@ -46,7 +51,7 @@
 
         </div>
 
-        <div class = "products">
+        <div class = "products" id="products">
             <h1>Our Products</h1>
             <div class = "products-list">
                 <div class = "product">
@@ -79,7 +84,7 @@
                     <p>$5</p>
                     <p>153kal</p>
                     <p>origin:</p>
-                    <a href=""><button>add to cart</button></a>
+                    <el-button type="text" @click="dialogFormVisible = true">add to cart</el-button>
                 </div>
                 <div class = "product">
                     <img src="image/coldBrew.png" alt="cold brew img">
@@ -99,15 +104,92 @@
                 </div>
             </div>
 
+            <el-dialog class="item" :visible.sync="dialogFormVisible">
 
+
+                    <div class = "info">
+                        <img src="image/flatWhite.png" alt="flatWhite">
+                        <div class = "intro" >
+                            <p>
+                                {{name}}
+                            </p>
+                            <p>
+                                origin:
+                            </p>
+                            <p>{{kal}}kal</p>
+                            <p>$ <span>{{price}} </span></p>
+                        </div>
+                    </div>
+                    <el-form :model="form">
+                        <div class="choose">
+                            <p>Choose Size:</p>
+                            <el-select v-model="form.size" class="type"placeholder="">
+                                <el-option value="small">small</el-option>
+                                <el-option value="medium">medium <span>+$0.5</span></el-option>
+                                <el-option value="large">large <span>+$1.0</span></el-option>
+                            </el-select>
+
+                        </div>
+
+                        <div class="choose">
+                            <p>Choose Base:</p>
+
+                            <el-select v-model="form.size" class="type" placeholder="">
+                                <el-option value ="fc">full cream</el-option>
+                                <el-option value ="diet">diet <span> +$0.5</span></el-option>
+                                <el-option value="oat">oat milk<span> +$1.0</span></el-option>
+                                <el-option value="soy">soy milk<span> +$1.0</span></el-option>
+                            </el-select>
+
+                        </div>
+                        <div class="choose">
+                            <p>Choose Number:</p>
+                            <el-select v-model="form.size" class="type"placeholder="">
+                                <el-option value ="1">1</el-option>
+                                <el-option value ="2">2</el-option>
+                                <el-option value="3">3</el-option>
+                                <el-option value="4">4</el-option>
+                                <el-option value="5">5</el-option>
+                                <el-option value ="6">6</el-option>
+                                <el-option value ="7">7</el-option>
+                                <el-option value ="8">8</el-option>
+                            </el-select>
+                        </div>
+
+                        <el-button @click="dialogFormVisible=false" class="button">add to cart</el-button>
+                    </el-form>
+
+
+            </el-dialog>
         </div>
-
-
     </main>
 
     <footer>
         @Copywrite by Soul Cafe
     </footer>
-    
+    <script>
+        new Vue({
+            el:"#products",
+            data() {
+                return {
+                    dialogFormVisible: false,
+                    el:"#item",
+                    name:'flat white',
+                    price:5.5,
+                    kal:135,
+                    form: {
+                        size: '',
+                        date1: '',
+                        date2: '',
+                        delivery: false,
+
+                    },
+                    formLabelWidth: '120px'
+                };
+            }
+        })
+    </script>
+
 </body>
+
 </html>
