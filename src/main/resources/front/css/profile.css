@@ -10,11 +10,12 @@ main a{
     text-decoration: none;
     color: #9E591F;
 }
-
-a img, a p{
+a image, a p{
     display: inline;
     font-size: large;
 }
+
+
 h1{
     color: black;
     font-family: 'Courier New';
