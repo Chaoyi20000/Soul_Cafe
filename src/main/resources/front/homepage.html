@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>homepage</title>
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/headingFooter.css">
     <script type="text/javascript" src="js/vue.js"></script>
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/headingFooter.css">
 </head>
 <body>
     <header>
@@ -33,7 +33,7 @@
 
     <main>
         <div class = "banner">
-            <img src="image/coffeeCup.png" alt="">
+            <img src="image/coffeeCup.png" alt="" style="max-width: 100%">
 
             <div class = "sentences">
                 <p>
@@ -60,23 +60,22 @@
                             <img style="width: 286px; height: 346px" src="./image/noImg.png"/>
                         </div>
                     </el-image>
-                    <p>{{product.name}}</p>
-                    <p>${{product.price}}</p>
-                    <p>500 Cal</p>
-                    <p>origin:</p>
+                    <p class="productTitle"><b>{{product.name}}</b></p>
+                    <p class="calorieInfo">500 Cal</p>
+                    <p class="redPrice"><b>${{product.price}}</b></p>
                     <button class="cartButton" @click="displayTagMenu(product)">add to cart</button>
                 </div>
             </div>
 
             <el-button type="text" @click="selectTagVisible = true">Dialog</el-button>
-            <el-dialog :visible.sync="selectTagVisible" width="400px">
+            <el-dialog :visible.sync="selectTagVisible" :width="dialogWidth">
                 <div class="topProductInfo">
                     <div>
                         <img :src="getImage(selected)" style="height: 150px; width: 120px"/>
                     </div>
                     <div class="topProductInfoRight">
                         <div class="productTitle"><b>{{selected.name}}</b></div>
-                        <div style="font-size: 20px">800 Cal</div>
+                        <div class="calorieInfo">500 Cal</div>
                         <div class="redPrice">${{selected.price + selected.sizePrice + selected.basePrice}}</div>
                     </div>
                 </div>

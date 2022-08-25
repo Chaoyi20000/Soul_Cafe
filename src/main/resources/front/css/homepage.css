@@ -43,6 +43,10 @@
     /* background-color: aliceblue; */
 }
 
+.product p{
+    line-height: 10px;
+}
+
 .products h1{
     font-family: 'Open Sans', sans-serif;
     text-align: center;
@@ -129,6 +133,11 @@
     font-size: 25px;
 }
 
+.calorieInfo{
+    font-size: 20px;
+    color: #737373;
+}
+
 .tagUnselected{
     border-style: solid;
     border-radius: 10px;
@@ -167,11 +176,13 @@
     color: white;
     border-radius: 20px;
     font-size: 20px;
-    margin-top: 70px;
+    margin-top: 50px;
     padding: 8px 20px;
 }
 
-
+.el-popup-parent--hidden{
+    padding-right: 0 !important;
+}
 
 
 @media screen and (max-width: 800px) {
