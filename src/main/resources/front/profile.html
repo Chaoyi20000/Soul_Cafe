@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
     <link rel="stylesheet" href="css/homepage.css">
+    <!--link rel="stylesheet" href="css/headingFooter.css"-->
+    <link rel="stylesheet" href="css/profile.css">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <link rel="stylesheet" href="css/headingFooter.css">
     <link rel="stylesheet" href="css/profile.css">
 </head>
@@ -27,38 +34,63 @@
       </div>
     </header>
     <main>
-      <a href="homepage.html">
-        <img style="width:10%" src="image/backarrow.png" alt="back">
+      <a href="homepage.html" class="back">
+        <img  src="image/back.svg" alt="back">
         <p >Continue Shopping</p>
       </a>
+
         <h1>
-            <p class = profile> Profile</p>
-            <p class = edit> Edit </p>
+            <p> PROFILE</p>
         </h1>
-        <table >
-            <tr>
-                <th class ="a">username: </th>
-                <th class ="b" >aaaa</th>
-            </tr>
-            <tr>
-                <th class ="a">phone number: </th>
-                <th class ="b">1234567890</th>
-            </tr>
-            <tr>
-                <th class ="a">email: </th>
-                <th class ="b">sdfdj@gmail.com</th>
-            </tr>
-            <tr>
-                <th class ="a">membership: </th>
-                <th class ="b">No</th>
-            </tr>
-            <tr>
-                <th class ="a">credit: </th>
-                <th class ="b">0</th>
-            </tr>
 
+        <div class="profile">
+            <img src="image/person.svg" alt="person">
+            <p class="name">Amber</p>
+        </div>
+
+        <div class="edit">
+            <img src="image/edit.svg" alt="edit">
+            <p>Edit</p>
+        </div>
+        <table class="info-table">
+            <thead>
+            <tr>
+
+                <th>User name</th>
+                <th>Phone number</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+
+                <td>Amber</td>
+                <td>123</td>
+                <td>123@gmail.com</td>
+            </tr>
+            </tbody>
+            <thead>
+            <tr>
+
+                <th>Member</th>
+                <th>ID</th>
+                <th>Credit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td>No</td>
+                <td>1234</td>
+                <td>0</td>
+            </tr>
+            </tbody>
         </table>
-
+        <div id="notice">
+            <p >Not a member yet, join us for more benefits!</p>
+            <button @click="" class="button">upgrade account</button>
+        </div>
 
     </main>
     <footer>

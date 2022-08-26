@@ -14,44 +14,98 @@ a image, a p{
     display: inline;
     font-size: large;
 }
+.back{
+    display: flex;
 
+}
 
 h1{
+    font-weight: normal;
     color: black;
     font-family: 'Courier New';
 }
 h1 p{
-    padding-left: 15vw;
-    margin-left: 5vw;
+    margin-left: 14vw;
+
     display: inline;
 }
 .profile{
-    margin-left: 15vw;
+    margin-top: 30px;
+    display: flex;
+    margin-left: 14vw;
 }
+.name{
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: normal;
+    margin-left: 4%;
+}
+
 
 .edit{
-    padding: 0.5vw;
-    border-radius: 30px;
-    border-style: solid;
-    border-color: #9E591F;
-
+    margin-top: 50px;
+    width: 85%;
+    display: flex;
+    justify-content:flex-end;
+}
+.edit p{
+    font-size: 20px;
+    color: #9E591F;
+    font-weight: bold;
 }
 
+.info-table {
 
-
-table{
-    margin-left: 30vw;
+    width: 70%;
+    margin-left: 15%;
+    border-collapse: collapse;
+    border-spacing: 3px;
+    empty-cells: show;
+    border: 3px solid #9E591F;
 }
 
-table th.a {
-    font-size: larger;
-    padding-top: 5vw;
-    text-align: left;
-
+.info-table caption {
+    color: #000;
+    font: italic 85%/1 arial,sans-serif;
+    padding: 1em 0;
+    text-align: center;
 }
 
-table th.b{
-    font-size: larger;
-    padding-top: 5vw;
-    text-align: left;
+.info-table td,.info-table th {
+    border: 1px solid #9E591F;
+    font-size: inherit;
+
+    overflow: visible;
+    padding: .5em 1em;
+}
+
+.info-table thead {
+    border-top: 3px solid #9E591F;
+    height: 70px;
+    background-color: transparent;
+    color: #9E591F;
+    text-align: center;
+    vertical-align: center;
+}
+
+.info-table td {
+    text-align: center;
+    height: 100px;
+    background-color: transparent;
+}
+#notice{
+    margin-top: 10%;
+    text-align: center;
+    font-weight: bold;
+}
+
+button{
+    display: block;
+    border: none;
+    font-size: 18px;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: #9E591F;
+    margin: auto;
 }
