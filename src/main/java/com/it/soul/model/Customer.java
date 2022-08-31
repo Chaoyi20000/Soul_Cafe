@@ -1,5 +1,6 @@
 package com.it.soul.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import java.io.Serializable;
 
@@ -23,5 +24,8 @@ public class Customer implements Serializable {
     private String gender;
 
     private String avatar;
+
+    @TableField(exist = false)
+    private String token;
 
 }
