@@ -21,6 +21,8 @@ public class Product implements Serializable {
 
     private BigDecimal price;
 
+    private Integer calorie;
+
     private String image;
 
     private String description;

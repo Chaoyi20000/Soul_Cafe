@@ -35,6 +35,7 @@ CREATE TABLE `product` (
                            `name` varchar(64) COLLATE utf8_bin NOT NULL COMMENT 'product name',
                            `category_id` bigint(20) NOT NULL COMMENT 'category id',
                            `price` decimal(10,2) DEFAULT NULL COMMENT 'price',
+                           `calorie` int(11) NOT NULL DEFAULT '0' COMMENT 'calorie',
                            `image` varchar(200) COLLATE utf8_bin NOT NULL COMMENT 'file path of the image',
                            `description` varchar(400) COLLATE utf8_bin DEFAULT NULL COMMENT 'description of product',
                            `status` int(11) NOT NULL DEFAULT '1' COMMENT '0 not available 1 available',
@@ -48,20 +49,20 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', 'Americano', '1', '2.50', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('2', 'Cappuccino', '1', '2.50', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('3', 'Espresso', '1', '2.50', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('4', 'Macchiato', '1', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('5', 'Latte', '1', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('6', 'Mocha', '1', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('7', 'Jasmine Tea ', '2', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('8', 'Green Tea', '2', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('9', 'Ginger Tea ', '2', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('10', 'Black Tea', '2', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('11', 'Mango Passionfruit', '3', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('12', 'Raspberry Blackcurrant', '3', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('13', 'Donut Cookie', '4', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('14', 'Caramel Slice', '4', '2.80', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('1', 'Americano', '1', '2.50','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('2', 'Cappuccino', '1', '2.50','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('3', 'Espresso', '1', '2.50','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('4', 'Macchiato', '1', '2.80','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('5', 'Latte', '1', '2.80','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('6', 'Mocha', '1', '2.80','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('7', 'Jasmine Tea ', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('8', 'Green Tea', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('9', 'Ginger Tea ', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('10', 'Black Tea', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('11', 'Mango Passionfruit', '3', '3.00','450', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('12', 'Raspberry Blackcurrant', '3', '3.00','450', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('13', 'Donut Cookie', '4', '2.80','500', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('14', 'Caramel Slice', '4', '2.80','500', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
 
 -- ----------------------------
 -- Table structure for staff
@@ -91,17 +92,20 @@ INSERT INTO `staff` VALUES ('1', 'admin', 'admin', 'e10adc3949ba59abbe56e057f20f
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
                             `id` bigint(20) NOT NULL COMMENT 'primary key',
-                            `name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'customer name',
                             `username` varchar(32) COLLATE utf8_bin NOT NULL COMMENT 'username',
+                            `firstname` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'customer name',
+                            `lastname` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'customer name',
                             `password` varchar(64) COLLATE utf8_bin NOT NULL COMMENT 'password',
                             `phone` varchar(100) COLLATE utf8_bin NOT NULL COMMENT 'mobile number',
                             `email` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'email address',
                             `gender` varchar(2) COLLATE utf8_bin DEFAULT NULL COMMENT 'gender',
                             `avatar` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT 'file path of the image',
+                            `create_time` datetime NOT NULL COMMENT 'create time',
+                            `update_time` datetime NOT NULL COMMENT 'modified time',
                             PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='customer information';
 
-
+INSERT INTO `customer` VALUES ('1', 'amber', 'Amber','Fan', 'e10adc3949ba59abbe56e057f20f883e', '13812312312','amber@soulcafe.com', '1', '','2021-05-06 17:20:07','2021-05-06 17:20:07');
 -- ----------------------------
 -- Table structure for orders
 -- ----------------------------
@@ -117,6 +121,8 @@ CREATE TABLE `orders` (
                           `remark` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'comments',
                           `phone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
                           `customer_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+                          `create_time` datetime NOT NULL COMMENT 'create time',
+                          `update_time` datetime NOT NULL COMMENT 'modified time',
                           PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='order table';
 
@@ -134,9 +140,12 @@ CREATE TABLE `order_detail` (
                                 `image` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'product image',
                                 `order_id` bigint(20) NOT NULL COMMENT 'order id',
                                 `product_id` bigint(20) DEFAULT NULL COMMENT 'product id',
+                                `size` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'size of product',
                                 `extra` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'add extra to coffee or flavor',
                                 `quantity` int(11) NOT NULL DEFAULT '1' COMMENT 'quantity of one product',
                                 `amount` decimal(10,2) NOT NULL COMMENT 'total amount',
+                                `create_time` datetime NOT NULL COMMENT 'create time',
+                                `update_time` datetime NOT NULL COMMENT 'modified time',
                                 PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='product details for one order';
 
@@ -155,10 +164,12 @@ CREATE TABLE `cart` (
                         `image` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'product image',
                         `customer_id` bigint(20) NOT NULL COMMENT 'customer id',
                         `product_id` bigint(20) DEFAULT NULL COMMENT 'product id',
+                        `size` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'size of product',
                         `extra` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'add extra to coffee or flavor',
                         `quantity` int(11) NOT NULL DEFAULT '1' COMMENT 'quantity of one product',
                         `amount` decimal(10,2) NOT NULL COMMENT 'total amount',
-                        `create_time` datetime DEFAULT NULL COMMENT 'create time',
+                        `create_time` datetime NOT NULL COMMENT 'create time',
+                        `update_time` datetime NOT NULL COMMENT 'modified time',
                         PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='shopping cart';
 
@@ -174,7 +185,7 @@ DROP TABLE IF EXISTS `membership`;
 CREATE TABLE `membership` (
                               `id` bigint(20) NOT NULL COMMENT 'primary key',
                               `customer_id` bigint(20) NOT NULL COMMENT 'customer id',
-                              `point` int(11) NOT NULL DEFAULT '0' COMMENT 'accumulated points',
+                              `credit` int(11) NOT NULL DEFAULT '0' COMMENT 'accumulated points',
                               `expire_date` datetime NOT NULL COMMENT 'expire time',
                               `create_time` datetime DEFAULT NULL COMMENT 'create time',
                               `update_time` datetime DEFAULT NULL COMMENT 'modified time',

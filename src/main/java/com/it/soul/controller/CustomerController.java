@@ -29,10 +29,10 @@ public class CustomerController {
         Customer c = customerService.getOne(queryWrapper);
 
         if(c == null){
-            return R.error("Incorrect username and password");
+            return R.error("Incorrect username or password");
         }
         if(!c.getPassword().equals(password)){
-            return R.error("Incorrect username and password");
+            return R.error("Incorrect username or password");
         }
         request.getSession().setAttribute("customer", c.getId());
         String token = TokenUtils.generateToken(c);

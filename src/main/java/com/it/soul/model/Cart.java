@@ -3,38 +3,34 @@ package com.it.soul.model;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-public class Customer implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Cart implements Serializable {
 
     private Long id;
 
-    private String username;
+    private String productName;
 
-    private String firstname;
+    private String image;
 
-    private String lastname;
+    private Long customerId;
 
-    private String password;
+    private Long productId;
 
-    private String phone;
+    private String size;
 
-    private String email;
+    private String extra;
 
-    private String gender;
+    private Integer quantity;
 
-    private String avatar;
+    private BigDecimal amount;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
-
-    @TableField(exist = false)
-    private String token;
-
 }

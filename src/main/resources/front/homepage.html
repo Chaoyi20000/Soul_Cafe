@@ -60,7 +60,7 @@
                         </div>
                     </el-image>
                     <p class="productTitle"><b>{{product.name}}</b></p>
-                    <p class="calorieInfo">500 Cal</p>
+                    <p class="calorieInfo">{{product.calorie}} Cal</p>
                     <p class="redPrice"><b>${{product.price}}</b></p>
                     <button class="cartButton" @click="displayTagMenu(product)">add to cart</button>
                 </div>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="topProductInfoRight">
                         <div class="productTitle"><b>{{selected.name}}</b></div>
-                        <div class="calorieInfo">500 Cal</div>
+                        <div class="calorieInfo">{{selected.calorie}} Cal</div>
                         <div class="redPrice">${{selected.price + selected.sizePrice + selected.basePrice}}</div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                 this.selected.basePrice = 0;
                 this.selected.sizePrice = 0;
                 this.selected.size = 'small';
-                this.selected.extra = [];
+                this.selected.extra = '';
                 this.selected['sizeFlags'] = [true, false, false];
                 this.selected['baseFlags'] = [false, false, false, false];
             },
@@ -196,19 +196,12 @@
                 console.log(this.selected)
             },
             selectBase(base, index) {
-                console.log(index)
-                if (this.selected['baseFlags'][index] === false) {
-                    this.selected['baseFlags'][index] = true;
-                    this.selected.basePrice += base[1];
-                    this.selected.extra.push(base[0])
-                } else {
-                    this.selected['baseFlags'][index] = false;
-                    this.selected.basePrice -= base[1];
-                    let pos = this.selected.extra.indexOf(base[0]);
-                    if (pos !== -1) {
-                        this.selected.extra.splice(pos, 1);
-                    }
-                }
+                this.selected.basePrice = 0;
+                this.selected['baseFlags'] = [false, false, false, false];
+                this.selected['baseFlags'][index] = true;
+                this.selected.extra = base[0];
+                this.selected.basePrice += base[1];
+                this.refreshDialog();
                 console.log(this.selected)
                 this.refreshDialog();
             },
@@ -218,28 +211,26 @@
             },
             addCart() {
                 let item = this.selected;
+                const customer = JSON.parse(localStorage.getItem('customer'));
                 let product = {
                     productId: item.id,
                     productName: item.name,
                     extra: item.extra.toString(),
                     size: item.size,
                     amount: item.price + item.sizePrice + item.basePrice,
-                    customerId: '1'
+                    customerId: customer.data.id,
                 }
                 this.selectTagVisible = false;
                 axios({
                     method: 'post',
                     url: '/cart',
-                    product
+                    data: product
                 }).then(res => {
                     if (res.data.code === 200) {
-                        this.$message({
-                            message: res.data.message,
-                            type: 'success'
-                        });
+                        this.$message("Add to cart successfully");
                     }
                 }).catch(err => {
-                    this.$message.error('Error Occurred');
+                    this.$message("Error occurred");
                 })
             },
             checkLoggedIn() {
