@@ -1,0 +1,68 @@
+main{
+
+    padding-top: 20px;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+main a{
+    text-decoration: none;
+    color: #9E591F;
+}
+.back{
+    display: flex;
+    color: #9E591F;
+}
+
+.time{
+    font-size: 25px;
+    text-align: center;
+    color: black;
+}
+.statusNumber{
+    font-size: 20px;
+    margin-bottom: 20%;
+}
+.time span, .statusNumber span, .contact span{
+    color: #9E591F;
+}
+.total span, .price span{
+    color: red;
+}
+.order{
+    margin:10%;
+}
+.item {
+    display: flex;
+    grid-template-columns: repeat(1, 100px 20px 80px);
+    gap: 0 10px;
+    background-color: #EADDD1;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+.item img{
+    width: 120px;
+    height: 150px;
+    padding: 14px ;
+    margin: auto;
+    display: block;
+}
+.name-size-base{
+    margin-left: 5%;
+}
+
+.price{
+    margin-left: 30%;
+}
+
+.price.number{
+    margin-top: 20%;
+}
+.total{
+    margin-top: 10%;
+    margin-left: 80%;
+}
+.contact{
+    margin-top:20%;
+}

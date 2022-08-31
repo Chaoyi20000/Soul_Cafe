@@ -70,49 +70,6 @@
 }
 
 
-.info{
-    display: flex;
-    text-align: left;
-
-    padding-right: 10px;
-    margin-left: 54px;
-}
-.el-dialog__body {
-    word-break: normal !important;
-}
-.el-dialog__body .info{
-    display: flex;
-
-}
-.choose{
-     padding-inline-start: 9%;
- }
-
-.button{
-    display: block !important;
-    border: none;
-    font-size: 18px!important;
-    color: white!important;
-    padding: 10px 15px!important;
-    border-radius: 15px!important;
-    background-color: #9E591F!important;
-    margin: 30px auto auto!important;
-}
-.el-dialog__body img{
-
-    width: 50%;
-}
-.intro{
-    text-align: left;
-    width: 50%;
-    padding-right: 10px;
-    margin-left: 28%
-}
-
-.into p {
-    color: #572418;
-    font-size: 22px;
-}
 
 .topProductInfo{
     display: flex;

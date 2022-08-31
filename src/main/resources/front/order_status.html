@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>order_status</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <link rel="stylesheet" href="css/order_status.css">
+    <link rel="stylesheet" href="css/headingFooter.css">
+</head>
+<body>
+<header>
+
+    <div class = "shopname">
+        <a href="">
+            <img src="image/logo.svg" alt="Cafe logo">
+
+        </a>
+        <h1>Soul Cafe</h1>
+    </div>
+
+    <div class = "icons">
+        <a href=""><img src="image/profile.svg" alt="profile"></a>
+        <a href=""><img src="image/cart.svg" alt="cart"></a>
+        <img src="image/logout.svg" alt="logout">
+    </div>
+</header>
+<main>
+    <a href="homepage.html" class="back">
+        <img  src="image/back.svg" alt="back">
+        <p>back</p>
+    </a>
+    <p class="time"> Your order will be ready at <span>{{time}}AM</span></p>
+    <div class="order">
+        <div class="statusNumber">
+            <p>ORDER NUMBER: <span>{{number}}</span></p>
+            <p>ORDER STATUS: <span>{{orderStatus}}</span></p>
+        </div>
+        <div class="detail">
+            <h3>ORDER DETAILS</h3>
+            <div v-for="product in order" class = "item">
+                <el-image :src="getImage(product)" >
+                    <div slot="error" class="image-slot">
+                        <img  src="./image/noImg.png">
+                    </div>
+                </el-image>
+
+                <div class="name-size-base">
+                    <p><b>{{product.name}}</b></p>
+                    <p>size:{{product.size}}</p>
+                    <p>base:{{product.base}}</p>
+
+                </div>
+
+                <div class="price">
+                    <p><b><span>${{product.price}}}</span></b> </p>
+                    <div class="number"><b>X {{product.getQuantity()}}</b> </div>
+                </div>
+            </div>
+        </div >
+        <div class="total"><b>ORDER TOTAL: <span>$11</span></b></div>
+        <div class="contact"><b>
+            Please contact <span>123456</span> if something wrong with your order.
+        </b></div>
+    </div>
+</main>
+<footer>
+    @Copywrite by Soul Cafe
+</footer>
+<script src="js/axios/axios.min.js"></script>
+<script>
+    new Vue({
+        el:"main",
+        data(){
+            return {
+                products:[],
+                isCoffee: false,
+
+
+
+            }
+        }
+    })
+</script>
+</body>
+</html>
