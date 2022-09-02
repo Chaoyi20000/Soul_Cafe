@@ -56,7 +56,7 @@ main{
 }
 
 .registerPrompt{
-    color: #676767;
+    color: #494949;
     text-align: center;
     margin-top: 20px;
 }
@@ -72,8 +72,10 @@ i{
     margin-left: 5px;
 }
 
-
-input{
+#gender{
+    margin-left: -20%;
+}
+input, select{
     width: 350px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -82,6 +84,11 @@ input{
     border-radius: 30px;
     border: solid #9F9F9F;
     outline: none;
+}
+
+option{
+    box-sizing: border-box;
+    background: #676767;
 }
 
 
