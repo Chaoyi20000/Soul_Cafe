@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register</title>
-    <link rel="stylesheet" href="css/register.css">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://kit.fontawesome.com/34e820dd12.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/axios/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -21,39 +25,32 @@
     </header>
 
     <main>
-            <div>
-                <form :model="form">
-                    <label for="uname">username</label><br>
-                    <input type="text" id="uname" name="uname"><br>
-                    <br>
-                    <label for="psd">password</label><br>
-                    <input type="text" id="psd" name="psd"><br>
-                    <br>
-                    <input type="button" value="Login">
-                </form>                
-            </div>
+        <div class="registerContainer">
+            <div class="signTitle">Register</div>
+            <div class="signPrompt">Register to order our products and enjoy drinkings!</div>
+            <form :model="form">
+                <label for="uname"><i class="fa-solid fa-user"></i>Username</label><br>
+                <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="username"><br>
+                <br>
+                <label for="psd"><i class="fa-solid fa-key"></i>Password</label><br>
+                <input :class="{'errorInput':isError}" type="password" id="psd" name="psd" v-model="password"><br>
+                <br>
+                <label for="cfpsd"><i class="fa-solid fa-user"></i>confirm password</label><br>
+                <input :class="{'errorInput':isError}" type="password" id="psd" name="psd"><br>
+                <br>
+                <label for="email"><i class="fa-solid fa-envelope"></i>email</label><br>
+                <input :class="{'errorInput':isError}" type="text" id="email" name="email"><br>
+                <br>
+                <label for="phone"><i class="fa-solid fa-phone"></i>phone</label><br>
+                <input :class="{'errorInput':isError}" type="text" id="phone" name="phone"><br>
+                <br>
 
-            <div>
-                <form>
-                    <label for="uname">username</label><br>
-                    <input type="text" id="uname" name="uname"><br>
-                    <br>
-                    <label for="email">email</label><br>
-                    <input type="text" id="email" name="email"><br>
-                    <br>
-                    <label for="phone">phone</label><br>
-                    <input type="text" id="phone" name="phone"><br>
-                    <br>
-                    <label for="psd">password</label><br>
-                    <input type="text" id="psd" name="psd"><br>
-                    <br>
-                    <label for="cfpsd">confirm password</label><br>
-                    <input type="text" id="cfpsd" name="cfpsd"><br>
-                    <br>
-                    <input type="button" value="Register">
-                </form>
-                        
-            </div>
+
+            </form>
+            <div style="text-align: center"><button class="loginButton" @click="register()">register</button></div>
+
+        </div>
+
 
     </main>
 
