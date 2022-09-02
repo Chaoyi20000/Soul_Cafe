@@ -95,17 +95,19 @@ CREATE TABLE `customer` (
                             `username` varchar(32) COLLATE utf8_bin NOT NULL COMMENT 'username',
                             `firstname` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'customer name',
                             `lastname` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'customer name',
+                            `credit` int(11) NOT NULL DEFAULT '0' COMMENT 'accumulated points',
                             `password` varchar(64) COLLATE utf8_bin NOT NULL COMMENT 'password',
                             `phone` varchar(100) COLLATE utf8_bin NOT NULL COMMENT 'mobile number',
                             `email` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'email address',
                             `gender` varchar(2) COLLATE utf8_bin DEFAULT NULL COMMENT 'gender',
                             `avatar` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT 'file path of the image',
+                            `expire_date` datetime COMMENT 'expire time',
                             `create_time` datetime NOT NULL COMMENT 'create time',
                             `update_time` datetime NOT NULL COMMENT 'modified time',
                             PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='customer information';
 
-INSERT INTO `customer` VALUES ('1', 'amber', 'Amber','Fan', 'e10adc3949ba59abbe56e057f20f883e', '13812312312','amber@soulcafe.com', '1', '','2021-05-06 17:20:07','2021-05-06 17:20:07');
+INSERT INTO `customer` VALUES ('1', 'amber', 'Amber','Fan', '0','e10adc3949ba59abbe56e057f20f883e', '13812312312','amber@soulcafe.com', '1', '','2021-05-10 02:24:09','2021-05-06 17:20:07','2021-05-06 17:20:07');
 -- ----------------------------
 -- Table structure for orders
 -- ----------------------------
@@ -176,20 +178,3 @@ CREATE TABLE `cart` (
 -- ----------------------------
 -- Records of shopping_cart
 -- ----------------------------
-
-
--- ----------------------------
--- Table structure for membership
--- ----------------------------
-DROP TABLE IF EXISTS `membership`;
-CREATE TABLE `membership` (
-                              `id` bigint(20) NOT NULL COMMENT 'primary key',
-                              `customer_id` bigint(20) NOT NULL COMMENT 'customer id',
-                              `credit` int(11) NOT NULL DEFAULT '0' COMMENT 'accumulated points',
-                              `expire_date` datetime NOT NULL COMMENT 'expire time',
-                              `create_time` datetime DEFAULT NULL COMMENT 'create time',
-                              `update_time` datetime DEFAULT NULL COMMENT 'modified time',
-                              PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='membership for customer';
-
-
