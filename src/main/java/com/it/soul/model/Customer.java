@@ -29,6 +29,10 @@ public class Customer implements Serializable {
 
     private String avatar;
 
+    private LocalDateTime expireDate;
+
+
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)

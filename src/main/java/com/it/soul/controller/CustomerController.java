@@ -55,6 +55,15 @@ public class CustomerController {
         return R.success("");
     }
 
+    @PostMapping("/register")
+    public R<String> register(@RequestBody Customer customer){
+        customer.setPassword( DigestUtils.md5DigestAsHex(customer.getPassword().getBytes()));
+        customerService.save(customer);
+        return R.success("register success");
+    }
+
+
+
 
 
 }

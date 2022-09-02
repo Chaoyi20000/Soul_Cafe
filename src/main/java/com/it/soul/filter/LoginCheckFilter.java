@@ -36,6 +36,7 @@ public class LoginCheckFilter implements Filter {
                 "/image/**",
                 "/css/**",
                 "/product/**",
+                "/customer/register"
         };
 
         for(String url: urls){
