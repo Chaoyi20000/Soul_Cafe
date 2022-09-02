@@ -72,10 +72,8 @@ i{
     margin-left: 5px;
 }
 
-#gender{
-    margin-left: -20%;
-}
-input, select{
+input[type="text"],
+input[type="password"]{
     width: 350px;
     padding: 12px 20px;
     margin: 8px 0;
