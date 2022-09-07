@@ -15,6 +15,12 @@ a img, a p{
     display: inline;
 }
 
+.items{
+    max-width: 900px;
+    display: block;
+    margin: auto;
+}
+
 h3{
     margin-top: 40px;
     padding: 10px 0;
@@ -22,16 +28,18 @@ h3{
 }
 
 .item{
+    max-width: 900px;
     display: grid;
     grid-template-areas: 'l   m m m m m r r';
     gap: 0 10px;
     background-color: #EADDD1;
     border-radius: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .item div:first-child{
     grid-area: l;
+
 }
 
 .item div:first-child img{
@@ -110,7 +118,7 @@ main button{
     padding-right: 0 !important;
 }
 
-main > p{
+.items > p{
     text-align: right;
 }
 
@@ -179,8 +187,10 @@ input[type=button]{
 }
 
 @media screen and (max-width: 800px) {
-    .item div:first-child{
-        display: none;
+    .item div:first-child img{
+        width: 60px;
+        height: 75px;
+        margin-top: 10px;
     }
 
     .item div:nth-child(3) img{
