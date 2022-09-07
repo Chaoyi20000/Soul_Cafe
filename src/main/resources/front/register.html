@@ -29,8 +29,8 @@
             <div class="signTitle">Register</div>
             <div class="signPrompt">Register to order our products and enjoy drinkings!</div>
             <form :model="form">
-                <label for="uname"><i class="fa-solid fa-user"></i>Username</label><br>
-                <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="username"><br>
+                <label for="uname"><i class="fa-solid fa-user"></i>username</label><br>
+                <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="uname"><br>
                 <br>
                 <div class = "flname">
                     <div>
@@ -40,33 +40,30 @@
                     <div>
                         <label for="lname"><i class="fa-solid fa-l"></i>last&nbspname</label><br>
                         <input :class="{'errorInput':isError}" type="text" id="lname" name="lname" v-model="lname">
-                        <br>
                     </div>
+                    <br>
                 </div>
 
-                <br>
-
-
-                <label for="psd"><i class="fa-solid fa-key"></i>Password</label><br>
+                <label for="psd"><i class="fa-solid fa-key"></i>password</label><br>
                 <input :class="{'errorInput':isError}" type="password" id="psd" name="psd" v-model="password"><br>
                 <br>
                 <label for="cfpsd"><i class="fa-solid fa-user"></i>confirm password</label><br>
                 <input :class="{'errorInput':isError}" type="password" id="cfpsd" name="cfpsd" v-model="cfpsd"><br>
                 <br>
                 <label for="email"><i class="fa-solid fa-envelope"></i>email</label><br>
-                <input :class="{'errorInput':isError}" type="text" id="email" name="email" v-model="email"><br>
+                <input :class="{'errorInput':isError}" type="email" id="email" name="email" v-model="email"><br>
                 <br>
                 <label for="phone"><i class="fa-solid fa-phone"></i>phone</label><br>
                 <input :class="{'errorInput':isError}" type="text" id="phone" name="phone" v-model="phone"><br>
                 <br>
 
 
-                <div :class="{'errorInput':isError}" id="gender" name="gender" v-model="gender">
+                <div :class="{'errorInput':isError}" id="gender" name="gender" >
                     <label for="gender"><i class="fa-solid fa-venus"></i>gender</label><br><br>
                     <label for="male">male</label>
-                    <input type="radio" id="male" name="male" value="male">
+                    <input type="radio" id="male" name="male" value="male" v-model="gender">
                     <label for="female">female</label>
-                    <input type="radio" id="female" name="female" value="female">
+                    <input type="radio" id="female" name="female" value="female" v-model="gender">
                 </div>
                 <br>
             </form>
@@ -85,11 +82,14 @@
             el:"main",
             data() {
                 return {
-                    username:'',
+                    uname:'',
+                    fname:'',
+                    lname:'',
                     password:'',
                     cfpsd: '',
                     phone: '',
                     email: '',
+                    gender: '',
                     // isError:false,
                 };
             },
@@ -99,19 +99,31 @@
             },
             methods: {
                 register(){
+                    //check password
+                    if(this.password != this.cfpsd){
+                        alert("password and confirm password should be the same!");
+                    }
+
+                    //submit
                     if(this.username.length > 0 && this.password.length > 0){
                         this.isError = false;
+                        var _this = this;
                         axios({
                             method: 'post',
                             url: '/customer/register',
                             data:{
-                                username: this.username,
-                                password: this.password
+                                username: _this.username,
+                                firstname: _this.fname,
+                                lastname: _this.lastname,
+                                password: _this.password,
+                                phone: _this.phone,
+                                email: _this.email,
+                                gender: _this.gender,
                             }
                         }).then(res => {
                             if(res.data.code === 200){
                                 localStorage.setItem('customer',JSON.stringify(res.data))
-                                window.location.href= '/homepage.html'
+                                window.location.href= '/login.html'
                             }else{
                                 this.$message(res.data.msg);
                                 this.isError = true;
