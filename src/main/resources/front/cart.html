@@ -101,16 +101,28 @@
                 <form model="form">
                     <p>checkout </p>
 
-                    <label for="phone">phone number</label><br>
+                    <label for="phone">phone number</label><br><br>
                     <input type="text" id="phone" name="phone"><br>
                     <br>
-                    <label for="card">credit card number</label><br>
+                    <label for="card">credit card number</label><br><br>
                     <input type="text" id="card" name="card"><br>
                     <br>
-                        <label for="expired">expired date</label>
-                        <label for="cvv" class="cvv">cvv</label><br>
-                        <input type="num" id="expired" name="expired">
-                        <input type="num" id="cvv" name="cvv"><br>
+                    <div >
+                        <div >
+                            <label for="expired">expired date</label><br>
+                            <input type="num" id="expired" name="expired">
+                        </div>
+
+                        <div>
+                            <label for="cvv" class="cvv">cvv</label><br>
+                            <input type="num" id="cvv" name="cvv"><br>
+                        </div>
+                    </div>
+
+
+
+
+
                     <input type="button" value="Place Order">
 
                 </form>
@@ -120,7 +132,7 @@
     </main>
 
     <footer>
-        @Copywrite by Soul Cafe
+        @Copyright by Soul Cafe
     </footer>
     <script>
         new Vue({
