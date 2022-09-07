@@ -32,13 +32,19 @@
                 <label for="uname"><i class="fa-solid fa-user"></i>Username</label><br>
                 <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="username"><br>
                 <br>
-                <label for="fname"><i class="fa-solid fa-user"></i>first&nbspname</label><br>
-                <input :class="{'errorInput':isError}" type="text" id="fname" name="fname" v-model="fname"><br>
-                <br>
-                <label for="lname"><i class="fa-solid fa-user"></i>last&nbspname</label><br>
-                <input :class="{'errorInput':isError}" type="text" id="lname" name="lname" v-model="lname"><br>
-                <br>
+                <div class = "flname">
+                    <div>
+                        <label for="fname"><i class="fa-solid fa-user"></i>first&nbspname</label><br>
+                        <input :class="{'errorInput':isError}" type="text" id="fname" name="fname" v-model="fname"><br>
+                    </div>
+                    <div>
+                        <label for="lname"><i class="fa-solid fa-user"></i>last&nbspname</label><br>
+                        <input :class="{'errorInput':isError}" type="text" id="lname" name="lname" v-model="lname"><br>
+                        <br>
+                    </div>
+                </div>
 
+                <br>
 
 
                 <label for="psd"><i class="fa-solid fa-key"></i>Password</label><br>
@@ -54,14 +60,13 @@
                 <input :class="{'errorInput':isError}" type="text" id="phone" name="phone" v-model="phone"><br>
                 <br>
 
-                <label for="gender"><i class="fa-solid fa-venus"></i>gender</label><br>
+
                 <div :class="{'errorInput':isError}" id="gender" name="gender" v-model="gender">
+                    <label for="gender"><i class="fa-solid fa-venus"></i>gender</label><br><br>
                     <label for="male">male</label>
                     <input type="radio" id="male" name="male" value="male">
                     <label for="female">female</label>
                     <input type="radio" id="female" name="female" value="female">
-
-
                 </div>
                 <br>
             </form>

@@ -84,6 +84,10 @@ input[type="password"]{
     outline: none;
 }
 
+input[name = "fname"], input[name = "lname"]{
+    width: 150px;
+}
+
 option{
     box-sizing: border-box;
     background: #676767;
@@ -124,6 +128,25 @@ footer{
     font-weight: 900;
     padding-bottom: 10px;
   }
+
+input[name = "male"]{
+    margin-right: 20px;
+    /*background-color: #3a8ee6;*/
+    /*border: #5daf34;*/
+}
+
+label[for = "male"]{
+    margin-left: 5px;
+}
+
+.flname{
+    display: flex;
+    justify-content: left;
+}
+
+.flname div:nth-child(2){
+    margin-left: 50px;
+}
 
   @media screen and (max-width: 680px) {
 
