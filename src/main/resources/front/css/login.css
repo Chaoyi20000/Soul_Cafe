@@ -55,6 +55,13 @@ main{
     margin-top: 10px;
 }
 
+.messageArea{
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
 .registerPrompt{
     color: #494949;
     text-align: center;
@@ -85,7 +92,13 @@ input[type="password"]{
 }
 
 input[name = "fname"], input[name = "lname"]{
-    width: 150px;
+    width: 170px;
+}
+
+.flname{
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px;
 }
 
 option{
@@ -139,14 +152,7 @@ label[for = "male"]{
     margin-left: 5px;
 }
 
-.flname{
-    display: flex;
-    justify-content: left;
-}
 
-.flname div:nth-child(2){
-    margin-left: 50px;
-}
 
   @media screen and (max-width: 680px) {
 

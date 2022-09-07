@@ -7,6 +7,7 @@
     <title>register</title>
     <script type="text/javascript" src="js/vue.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="https://kit.fontawesome.com/34e820dd12.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/login.css">
     <script src="js/axios/axios.min.js"></script>
@@ -29,47 +30,55 @@
             <div class="signTitle">Register</div>
             <div class="signPrompt">Register to order our products and enjoy drinkings!</div>
             <form :model="form">
-                <label for="uname"><i class="fa-solid fa-user"></i>username</label><br>
-                <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="uname"><br>
+                <label for="uname"><i class="fa-solid fa-user"></i>Username</label><br>
+                <input :class="{'errorInput':usernameErr}" type="text" id="uname" name="uname" v-model="username"><br>
                 <br>
                 <div class = "flname">
                     <div>
-                        <label for="fname"><i class="fa-solid fa-f"></i>first&nbspname</label><br>
-                        <input :class="{'errorInput':isError}" type="text" id="fname" name="fname" v-model="fname">
+                        <label for="fname"><i class="fa-solid fa-pen"></i>First&nbspname</label><br>
+                        <input :class="{'errorInput':firstnameErr}" type="text" id="fname" name="fname" v-model="firstname">
                     </div>
-                    <div>
-                        <label for="lname"><i class="fa-solid fa-l"></i>last&nbspname</label><br>
-                        <input :class="{'errorInput':isError}" type="text" id="lname" name="lname" v-model="lname">
+                    <div style="margin-left: 10px">
+                        <label for="lname"><i class="fa-solid fa-pen"></i>Last&nbspname</label><br>
+                        <input :class="{'errorInput':lastnameErr}" type="text" id="lname" name="lname" v-model="lastname">
                     </div>
-                    <br>
                 </div>
 
-                <label for="psd"><i class="fa-solid fa-key"></i>password</label><br>
-                <input :class="{'errorInput':isError}" type="password" id="psd" name="psd" v-model="password"><br>
+                <label for="psd"><i class="fa-solid fa-key"></i>Password</label><br>
+                <input :class="{'errorInput':passwordErr}" type="password" id="psd" name="psd" v-model="password"><br>
                 <br>
-                <label for="cfpsd"><i class="fa-solid fa-key"></i>confirm password</label><br>
-                <input :class="{'errorInput':isError}" type="password" id="cfpsd" name="cfpsd" v-model="cfpsd"><br>
+                <label for="cfpsd"><i class="fa-solid fa-key"></i>Confirm password</label><br>
+                <input :class="{'errorInput':confirmPswErr}" type="password" id="cfpsd" name="cfpsd" v-model="confirmPsw"><br>
                 <br>
-                <label for="email"><i class="fa-solid fa-envelope"></i>email</label><br>
-                <input :class="{'errorInput':isError}" type="email" id="email" name="email" v-model="email"><br>
+                <label for="phone"><i class="fa-solid fa-phone"></i>Phone number</label><br>
+                <input :class="{'errorInput':phoneErr}" type="text" id="phone" name="phone" v-model="phone"><br>
                 <br>
-                <label for="phone"><i class="fa-solid fa-phone"></i>phone</label><br>
-                <input :class="{'errorInput':isError}" type="text" id="phone" name="phone" v-model="phone"><br>
+                <label for="email"><i class="fa-solid fa-envelope"></i>Email</label><br>
+                <input :class="{'errorInput':emailErr}" type="email" id="email" name="email" v-model="email"><br>
                 <br>
 
 
-                <div :class="{'errorInput':isError}" id="gender" name="gender" >
-                    <label for="gender"><i class="fa-solid fa-venus"></i>gender</label><br><br>
-                    <label for="male">male</label>
-                    <input type="radio" id="male" name="male" value="male" v-model="gender">
-                    <label for="female">female</label>
-                    <input type="radio" id="female" name="female" value="female" v-model="gender">
+                <div id="gender" name="gender" >
+                    <label for="gender"><i class="fa-solid fa-venus"></i>Gender</label>
+                    <span style="margin-left: 70px">
+                        <label for="male">Male</label>
+                        <input type="radio" id="male" name="male" value="male" v-model="gender">
+                        <label for="female">Female</label>
+                        <input type="radio" id="female" name="female" value="female" v-model="gender">
+                    </span>
                 </div>
                 <br>
             </form>
+
+            <div class="messageArea" v-show="displayMessage">
+                <div v-for="msg in messages">{{msg}}</div>
+            </div>
             <div style="text-align: center"><button class="loginButton" @click="register()">register</button></div>
 
+
         </div>
+
+
 
 
     </main>
@@ -82,15 +91,23 @@
             el:"main",
             data() {
                 return {
-                    uname:'',
-                    fname:'',
-                    lname:'',
+                    username:'',
+                    firstname:'',
+                    lastname:'',
                     password:'',
-                    cfpsd: '',
+                    confirmPsw: '',
                     phone: '',
                     email: '',
-                    gender: '',
-                    // isError:false,
+                    gender: 'male',
+                    usernameErr: false,
+                    firstnameErr: false,
+                    lastnameErr: false,
+                    emailErr: false,
+                    phoneErr: false,
+                    passwordErr: false,
+                    confirmPswErr: false,
+                    displayMessage:false,
+                    messages: []
                 };
             },
             created() {
@@ -99,40 +116,92 @@
             },
             methods: {
                 register(){
-                    //check password
-                    if(this.password != this.cfpsd){
-                        alert("password and confirm password should be the same!");
+                    if(!this.verifyInput()){
+                        return;
                     }
-
-                    //submit
-                    if(this.username.length > 0 && this.password.length > 0){
-                        this.isError = false;
-                        var _this = this;
-                        axios({
-                            method: 'post',
-                            url: '/customer/register',
-                            data:{
-                                username: _this.username,
-                                firstname: _this.fname,
-                                lastname: _this.lastname,
-                                password: _this.password,
-                                phone: _this.phone,
-                                email: _this.email,
-                                gender: _this.gender,
+                    axios({
+                        method: 'post',
+                        url: '/customer/register',
+                        data:{
+                            username: this.username,
+                            firstname: this.firstname,
+                            lastname: this.lastname,
+                            password: this.password,
+                            phone: this.phone,
+                            email: this.email,
+                            gender: (this.gender==='male')?'1':'0',
                             }
                         }).then(res => {
                             if(res.data.code === 200){
-                                localStorage.setItem('customer',JSON.stringify(res.data))
-                                window.location.href= '/login.html'
+                                this.$message('Register successful! Directing to login page...');
+                                setTimeout(function (){
+                                    window.location.href= '/login.html'
+                                },3000)
                             }else{
                                 this.$message(res.data.msg);
                                 this.isError = true;
                             }
                         }).catch(err => {
                         })
-                    }else{
-                        this.$message('please enter your password correctly.');
-                        this.isError = true;
+                },
+                verifyInput(){
+
+                    let fields = ['username','firstname','lastname','password','confirmPsw','phone','email'];
+                    let isEmpty= false;
+                    this.resetInput(fields);
+
+                    for(let i = 0; i < fields.length; i++){
+                        if(this.checkEmpty(fields[i])){
+                            isEmpty = true;
+                        }
+                    }
+                    if(isEmpty){
+                        this.messages.push('Please fill empty field');
+                    }
+
+                    const emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+                    const phonePattern = /^04[0-9]{8}$/
+
+                    if(!emailPattern.test(this.email)){
+                        if(this.emailErr === false){
+                            this.emailErr = true
+                            this.messages.push('Please enter correct email');
+                        }
+                    }
+
+                    if(!phonePattern.test(this.phone)){
+                        if(this.phoneErr === false){
+                            this.phoneErr = true
+                            this.messages.push('Please enter correct phone number');
+                        }
+                    }
+
+                    if(this.password !== this.confirmPsw){
+                        if(this.passwordErr === false){
+                            this.passwordErr = true;
+                            this.confirmPswErr = true;
+                            this.messages.push('Passwords are not consistent');
+                        }
+                    }
+
+                    if(this.messages.length > 0){
+                        this.displayMessage = true;
+                        return false;
+                    }
+                    return true;
+                },
+                checkEmpty(name){
+                    if(this[name] === ''){
+                        this[name + 'Err'] = true;
+                        return true;
+                    }
+                    return false;
+                },
+                resetInput(fields){
+                    this.messages = [];
+                    this.displayMessage = false;
+                    for(let i = 0; i < fields.length; i++){
+                        this[fields[i] + 'Err'] = false;
                     }
                 }
             }

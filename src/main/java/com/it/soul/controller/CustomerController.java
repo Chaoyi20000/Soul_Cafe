@@ -57,6 +57,14 @@ public class CustomerController {
 
     @PostMapping("/register")
     public R<String> register(@RequestBody Customer customer){
+        LambdaQueryWrapper<Customer> qw = new LambdaQueryWrapper<>();
+        qw.eq(Customer::getUsername, customer.getUsername());
+        int count = customerService.count(qw);
+        if(count > 0){
+            return R.error("Username already exist");
+        }
+
+
         customer.setPassword( DigestUtils.md5DigestAsHex(customer.getPassword().getBytes()));
         customerService.save(customer);
         return R.success("register success");
