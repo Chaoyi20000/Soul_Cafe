@@ -9,64 +9,91 @@ body{
 main{
 
     padding-top: 20px;
-    width: 90%;
+    width: 80%;
     margin: auto;
     padding-bottom: 50px;
-}
-.profile{
-    padding: 30px;
-    border-radius: 20px;
-    background: rgba(237, 240, 249, 0.8);
-    backdrop-filter: blur(10px);
 }
 
 main a{
     text-decoration: none;
-    color: #9E591F;
+    color: black;
 }
-a image, a p{
-    display: inline;
-    font-size: large;
-}
-.back{
-    display: flex;
 
+a img, a p{
+    display: inline;
 }
+
+.profile{
+    margin-top: 3%;
+    align-items: center;
+    width: 70%;
+    min-width: 380px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(237, 240, 249, 0.9);
+    backdrop-filter: blur(20px);
+    margin-left: 10%;
+}
+
+
 
 h1{
     font-weight: normal;
     color: black;
-    font-family: 'Courier New';
 }
 h1 p{
-    margin-left: 1vw;
-
+    margin-top: -10px;
 }
+
 .img-name-gender{
     text-align: center;
 }
 .title{
     margin-left: 10%;
 }
-edit
+.editable-container{
+    margin-top: 40px;
+    display: flex;
+}
+.editable-title{
+    width: 50%;
+    padding-left: 40px;
+}
+.title{
+    padding: 3px;
+}
+.editable-info{
+    width: 50%;
+    text-align: center;
+}
+.info{
+    padding: 10px;
+    margin-top: 10px;
+}
+.info:nth-child(2){
+    margin-top: 18px;
+}
 .name{
-    margin-top: 50px;
     font-size: 20px;
     font-weight: normal;
     margin-left: 4%;
 }
 
-
-.edit{
-    margin-top: 50px;
-    width: 85%;
+.done-cancel{
     display: flex;
     justify-content:flex-end;
+}
+.edit{
+    margin-top: 10px;
+    display: flex;
+    justify-content:flex-end;
+    margin-left: 10px;
 }
 .edit p{
     font-size: 20px;
     color: #9E591F;
     font-weight: bold;
+
 }
 
 #notice{

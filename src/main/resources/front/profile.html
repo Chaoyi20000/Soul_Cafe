@@ -31,36 +31,66 @@
       </div>
     </header>
     <main>
-      <a href="homepage.html" class="back">
-        <img  src="image/back.svg" alt="back">
-        <p >Continue Shopping</p>
-      </a>
+        <a href="homepage.html">
+            <img src="image/arrowLeft.svg" alt="back" >
+            <p>back</p>
+        </a>
         <div class="profile">
-        <h1 class="title">
-            <p> PROFILE</p>
+        <h1>
+            <p><b>PROFILE</b></p>
         </h1>
 
         <div class="img-name-gender">
             <img src="image/person.svg" alt="person">
-            <p class="name">Amber&nbsp;&nbsp;<img  src="image/male.svg" alt="gender"></p>
+            <p class="name"><b>Amber</b>&nbsp;&nbsp;<img  src="image/male.svg" alt="gender"></p>
         </div>
             <div class="editable-container">
                 <div class="editable-title">
-                    <div class="title"><img  src="image/info-person.svg" alt="gender">&nbsp;User&nbsp;name</div>
-                    <div class="title"><img  src="image/phone.svg" alt="gender">&nbsp;Phone&nbsp;number</div>
-                    <div class="title"><img  src="image/email.svg" alt="gender">&nbsp;Email</div>
+                    <div class="title"><img  src="image/info-person.svg" alt="person"><b>&nbsp;&nbsp;&nbsp;User&nbsp;name</b></div>
+                    <div class="title"><img  src="image/phone.svg" alt="phone" style="display: inline"><b>&nbsp;&nbsp;&nbsp;Phone&nbsp;number</b></div>
+                    <div class="title"><img  src="image/email.svg" alt="email"><b>&nbsp;Email</b></div>
                 </div>
-                <div>
-                    <div class="title"><img  src="image/info-person.svg" alt="gender">&nbsp;name</div>
-                    <div class="title"><img  src="image/phone.svg" alt="gender">&nbsp;phone_number</div>
-                    <div class="title"><img  src="image/email.svg" alt="gender">&nbsp;email</div>
+                <div class="editable-info">
+                    <div class="info" v-if="!isEdit">name</div>
+                    <div v-else class="info">
+                        <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="username">
+                    </div>
+                    <div class="info" v-if="!isEdit">&nbsp;phone_number</div>
+                    <div v-else class="info">
+                        <input :class="{'errorInput':phoneErr}" type="text" id="phone" name="phone" v-model="phone">
+                    </div>
+                    <div class="info" v-if="!isEdit">&nbsp;email</div>
+                    <div v-else class="info">
+                        <input :class="{'errorInput':phoneErr}" type="text" id="email" name="email" v-model="email">
+                    </div>
                 </div>
             </div>
-        <div class="edit">
-            <img src="image/edit.svg" alt="edit">
-            <p>Edit</p>
-        </div>
+            <div class="edit" v-if="!isEdit" @click="edit()">
+                <img src="image/edit.svg" alt="edit">
+                <p>Edit</p>
+            </div>
+            <div class="done-cancel" v-else>
+                <div class="edit" @click="modify()">
+                <img src="image/done.svg" alt="done">
+                <p>done</p>
+                </div>
+                <div class="edit" @click="cancel()">
+                    <img src="image/cancel.svg" alt="cancel">
+                    <p>cancel</p>
+                </div>
+            </div>
+            <hr>
+            <div class="editable-container">
+                <div class="editable-title">
+                    <div class="title"><img  src="image/member.svg" alt="member"><b>&nbsp;Membership</b></div>
+                    <div class="title"><img  src="image/credit.svg" alt="credit"><b>Credit</b></div>
 
+                </div>
+                <div class="editable-info">
+                    <div class="info">NO</div>
+                    <div class="info">0</div>
+                </div>
+            </div>
         <div id="notice">
             <p >Not a member yet, join us for more benefits!</p>
             <button @click="" class="button">upgrade account</button>
@@ -70,5 +100,65 @@
     <footer>
       @Copywrite by Soul Cafe
     </footer>
+    <script src="js/axios/axios.min.js"></script>
+    <script>
+        new Vue({
+            el:"main",
+
+            data() {
+                return {
+                    isEdit:false,
+                };
+            },
+            created() {
+                this.checkLoggedIn();
+            },
+            mounted() {
+                axios({
+                    method: 'get',
+                    url: '/customer'
+                }).then(res => {
+                    this.items = res.data.data;
+                });
+
+
+
+            },
+            methods:{
+                checkLoggedIn() {
+                    if (localStorage.getItem('customer') === null) {
+                        return;
+                    }
+                    const customer = JSON.parse(localStorage.getItem('customer'));
+                    axios({
+                        method: 'get',
+                        url: '/customer/check',
+                        params: {
+                            token: customer.data.token
+                        }
+                    }).then(res => {
+                        if (res.data.code !== 200) {
+                            localStorage.removeItem('customer');
+                        } else {
+                            console.log(customer);
+                            this.loggedIn = true;
+                        }
+                    });
+                },
+                edit(){
+                    this.isEdit=true;
+                },
+                cancel(){
+                    this.isEdit=false;
+                },
+                done(){
+                    this.isEdit=false;
+                }
+            }
+
+
+        })
+    </script>
+
 </body>
 </html>
