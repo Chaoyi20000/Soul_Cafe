@@ -30,7 +30,7 @@ h3{
 .item{
     max-width: 900px;
     display: grid;
-    grid-template-areas: 'l   m m m m m r r';
+    grid-template-areas: 'l m m m m m r r';
     gap: 0 10px;
     background-color: #EADDD1;
     border-radius: 30px;
