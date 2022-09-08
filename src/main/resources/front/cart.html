@@ -37,60 +37,92 @@
 
         <h3><em><b>Your Cart</b> </em> </h3>
         <div class = "items">
-            <h3>Your Order (2 ITEM)</h3>
+            <h3>Your Order: ({{items.length}} ITEM)</h3>
 
-            <div class = "item">
-                
+
+            <div v-for="item in items" class="item">
+
                 <div>
-                    <img src="image/espresso.png" alt="espresso">
+                    <el-image :src="getImage(item)">
+                        <div slot="error" class="image-slot">
+                            <img style="width: 286px; height: 346px" src="./image/noImg.png"/>
+                        </div>
+                    </el-image>
                 </div>
 
                 <div>
-                    <p><b>espresso</b></p>
-                    <p>size:slfhk</p>
-                    <p>base:kdlsfj</p>
-               
+                    <p><b>{{item.productName}}</b></p>
+                    <p>size:{{item.size}}</p>
+                    <p>base:{{item.extra}}</p>
+
 
                     <div class="qty">
                         <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>
                         <label for="quantity"></label>
-                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">
+                        <input type="number" id="quantity" name="quantity" min="1" max="1000" value="{{item.amount}}">
                         <button onclick="increase()"><img src="image/add.png" alt="increase"></button>
-                    </div>                   
+                    </div>
                 </div>
 
                 <div>
-                    <p><b>$5</b> </p>
+                    <p><b>${{item.price}}}</b> </p>
                     <img src="image/bin.png" alt="delete">
                 </div>
+
             </div>
 
-            <div class = "item">
-                
-                <div>
-                    <img src="image/latte.png" alt="latte">
-                </div>
+<!--            <div class = "item">-->
+<!--                -->
+<!--                <div>-->
+<!--                    <img src="image/espresso.png" alt="espresso">-->
+<!--                </div>-->
 
-                <div>
-                    <p><b>latte</b></p>
-                    <p>size:slfhk</p>
-                    <p>base:kdlsfj</p>
-               
+<!--                <div>-->
+<!--                    <p><b>espresso</b></p>-->
+<!--                    <p>size:slfhk</p>-->
+<!--                    <p>base:kdlsfj</p>-->
+<!--               -->
 
-                    <div class="qty">
-                        <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>
-                        <label for="quantity"></label>
-                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">
-                        <button onclick="increase()"><img src="image/add.png" alt="increase"></button>
-                    </div>                   
-                </div>
+<!--                    <div class="qty">-->
+<!--                        <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>-->
+<!--                        <label for="quantity"></label>-->
+<!--                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">-->
+<!--                        <button onclick="increase()"><img src="image/add.png" alt="increase"></button>-->
+<!--                    </div>                   -->
+<!--                </div>-->
 
-                <div>
-                    <p><b>$5</b> </p>
-                    <img src="image/bin.png" alt="delete">
-                </div>
-            </div>
-            <p>ORDER TOTAL: 11$</p>
+<!--                <div>-->
+<!--                    <p><b>$5</b> </p>-->
+<!--                    <img src="image/bin.png" alt="delete">-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class = "item">-->
+<!--                -->
+<!--                <div>-->
+<!--                    <img src="image/latte.png" alt="latte">-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <p><b>latte</b></p>-->
+<!--                    <p>size:slfhk</p>-->
+<!--                    <p>base:kdlsfj</p>-->
+<!--               -->
+
+<!--                    <div class="qty">-->
+<!--                        <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>-->
+<!--                        <label for="quantity"></label>-->
+<!--                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">-->
+<!--                        <button onclick="increase()"><img src="image/add.png" alt="increase"></button>-->
+<!--                    </div>                   -->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <p><b>$5</b> </p>-->
+<!--                    <img src="image/bin.png" alt="delete">-->
+<!--                </div>-->
+<!--            </div>-->
+            <p>ORDER TOTAL: {{getTotalPrice(items)}}$</p>
         </div>
 
 
@@ -138,8 +170,7 @@
                 return {
                     dialogWidth: 0,
                     checkoutVisible: false,
-                    products:[],
-
+                    items:[],
                 };
             },
             created() {
@@ -149,14 +180,32 @@
             mounted() {
                 axios({
                     method: 'get',
-                    url: '/product'
+                    url: '/cart/getCart'
                 }).then(res => {
-                    this.products = res.data.data;
+                    this.items = res.data.data;
                 });
+
+                window.onresize = () => {
+                    return (() => {
+                        this.setDialogWidth()
+                    })()
+                }
 
 
             },
             methods:{
+                getImage(item) {
+                    return 'image/' + item.name.toLowerCase() + '.png';
+                },
+
+                getTotalPrice(items){
+                    let total = 0;
+                    for(let item in items){
+                        total = total + (item.price)*(item.amount);
+                    }
+                    return total;
+                },
+
                 setDialogWidth() {
                     var val = document.body.clientWidth
                     const def = 380
@@ -165,6 +214,26 @@
                     } else {
                         this.dialogWidth = def + 'px'
                     }
+                },
+                checkLoggedIn() {
+                    if (localStorage.getItem('customer') === null) {
+                        return;
+                    }
+                    const customer = JSON.parse(localStorage.getItem('customer'));
+                    axios({
+                        method: 'get',
+                        url: '/customer/check',
+                        params: {
+                            token: customer.data.token
+                        }
+                    }).then(res => {
+                        if (res.data.code !== 200) {
+                            localStorage.removeItem('customer');
+                        } else {
+                            console.log(customer);
+                            this.loggedIn = true;
+                        }
+                    });
                 }
             }
 

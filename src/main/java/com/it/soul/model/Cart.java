@@ -21,6 +21,8 @@ public class Cart implements Serializable {
 
     private Long productId;
 
+//    private BigDecimal price;
+
     private String size;
 
     private String extra;
