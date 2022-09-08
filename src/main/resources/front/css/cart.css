@@ -125,12 +125,9 @@ main button{
 }
 
 form{
-    /*align-items: center;*/
-    /*background: #fff;*/
-    /*padding: 30px;*/
+
     height: fit-content;
     width: fit-content;
-    /*background-color: #3a8ee6;*/
     display: block;
     margin: auto;
 }
@@ -144,19 +141,14 @@ form p{
     text-align: center;
     color: #6D3E16;
     font-size: 30px;
+    margin-top:-5px;
 }
-/*form a{*/
-/*    !*margin-left: 90%;*!*/
-/*    display: inline;*/
-/*}*/
-/*label, input{*/
-/*    !*margin-left: 10%;*!*/
-/*}*/
+
 
 form > input[type=text]{
     width: 100%;
     padding: 12px 0;
-    /*margin: 8px 9%;*/
+
     box-sizing: border-box;
     background: transparent;
     border: solid #9F9F9F;
@@ -175,9 +167,10 @@ input[type=num] {
     -webkit-transition: 0.5s;
     transition: 0.5s;
 }
-/*input#cvv {*/
-/*    margin-left: 19%;*/
-/*}*/
+input#cvv, .cvv {
+  margin-left: 19%;
+}
+
 input[type=text]:focus {
     border: none;
     border: 2px solid #8A8A8A;
@@ -185,8 +178,8 @@ input[type=text]:focus {
 
 input[type=button]{
     padding: 12px 20px;
-    margin: 22px 9%;
-    width: 80%;
+    margin: 22px 0;
+    width: 100%;
     color: white;
     background: #6D3E16;
     border: solid #9F9F9F;

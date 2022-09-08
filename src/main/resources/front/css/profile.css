@@ -1,9 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('../image/img.png');
+    opacity: 80%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 main{
 
     padding-top: 20px;
     width: 90%;
     margin: auto;
     padding-bottom: 50px;
+}
+.profile{
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(237, 240, 249, 0.8);
+    backdrop-filter: blur(10px);
 }
 
 main a{
@@ -25,15 +39,16 @@ h1{
     font-family: 'Courier New';
 }
 h1 p{
-    margin-left: 14vw;
+    margin-left: 1vw;
 
-    display: inline;
 }
-.profile{
-    margin-top: 30px;
-    display: flex;
-    margin-left: 14vw;
+.img-name-gender{
+    text-align: center;
 }
+.title{
+    margin-left: 10%;
+}
+edit
 .name{
     margin-top: 50px;
     font-size: 20px;
@@ -54,45 +69,6 @@ h1 p{
     font-weight: bold;
 }
 
-.info-table {
-
-    width: 70%;
-    margin-left: 15%;
-    border-collapse: collapse;
-    border-spacing: 3px;
-    empty-cells: show;
-    border: 3px solid #9E591F;
-}
-
-.info-table caption {
-    color: #000;
-    font: italic 85%/1 arial,sans-serif;
-    padding: 1em 0;
-    text-align: center;
-}
-
-.info-table td,.info-table th {
-    border: 1px solid #9E591F;
-    font-size: inherit;
-
-    overflow: visible;
-    padding: .5em 1em;
-}
-
-.info-table thead {
-    border-top: 3px solid #9E591F;
-    height: 70px;
-    background-color: transparent;
-    color: #9E591F;
-    text-align: center;
-    vertical-align: center;
-}
-
-.info-table td {
-    text-align: center;
-    height: 100px;
-    background-color: transparent;
-}
 #notice{
     margin-top: 10%;
     text-align: center;
