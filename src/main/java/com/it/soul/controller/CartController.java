@@ -45,8 +45,7 @@ public class CartController {
         return R.success("Add to cart successfully");
     }
     @GetMapping
-    public R<List<Cart>> getCart(HttpServletRequest request){
-        String token = request.getParameter("token");
+    public R<List<Cart>> getCart(@RequestParam String token){
         Customer customer = TokenUtils.getCustomer(token);
         LambdaQueryWrapper<Cart> qw = new LambdaQueryWrapper<>();
         qw.eq(Cart::getCustomerId, customer.getId());
