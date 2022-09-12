@@ -180,7 +180,7 @@
             mounted() {
                 axios({
                     method: 'get',
-                    url: '/cart/getCart'
+                    url: '/cart'
                 }).then(res => {
                     this.items = res.data.data;
                 });
