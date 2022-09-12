@@ -54,4 +54,16 @@ public class CartController {
         return R.success(carts);
     }
 
+    @PutMapping
+    public R<String> changeCart(@RequestBody Cart cart){
+        cartService.updateById(cart);
+        return R.success("change the cart successfully");
+    }
+
+    @DeleteMapping
+    public R<String> deleteCart(@RequestBody Cart cart){
+        cartService.removeById(cart);
+        return R.success("delete the cart successfully");
+    }
+
 }
