@@ -30,7 +30,7 @@
         <img src="image/logout.svg" alt="logout">
       </div>
     </header>
-    <main>
+    <main id="profile">
         <a href="homepage.html">
             <img src="image/arrowLeft.svg" alt="back" >
             <p>back</p>
@@ -103,7 +103,7 @@
     <script src="js/axios/axios.min.js"></script>
     <script>
         new Vue({
-            el:"main",
+            el:"#profile",
 
             data() {
                 return {
@@ -120,8 +120,8 @@
             },
 
             mounted() {
-                this.customer=JSON.parse(localStorage.getItem('customer'))
-                console.log(this.customer)
+                this.customer=JSON.parse(localStorage.getItem('customer')).data
+
 
             },
             methods:{
