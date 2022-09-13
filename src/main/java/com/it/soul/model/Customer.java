@@ -31,6 +31,7 @@ public class Customer implements Serializable {
 
     private LocalDateTime expireDate;
 
+    private int credit;
 
 
     @TableField(fill = FieldFill.INSERT)

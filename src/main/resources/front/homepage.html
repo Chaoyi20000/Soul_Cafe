@@ -162,7 +162,7 @@
         },
         methods: {
             getImage(product) {
-                return 'image/' + product.name.toLowerCase() + '.png';
+                return 'image/' + product.name.replaceAll(' ','-').toLowerCase() + '.png';
             },
             displayTagMenu(product) {
                 if (!this.loggedIn) {
