@@ -42,7 +42,7 @@
 
         <div class="img-name-gender">
             <img src="image/person.svg" alt="person">
-            <p class="name"><b>Amber</b>&nbsp;&nbsp;<img  src="image/male.svg" alt="gender"></p>
+            <p class="name"><b>{{customer.firstname}}&nbsp;{{customer.lastname}}</b>&nbsp;&nbsp;<img  src="image/male.svg" alt="gender"></p>
         </div>
             <div class="editable-container">
                 <div class="editable-title">
@@ -51,15 +51,15 @@
                     <div class="title"><img  src="image/email.svg" alt="email"><b>&nbsp;Email</b></div>
                 </div>
                 <div class="editable-info">
-                    <div class="info" v-if="!isEdit">name</div>
+                    <div class="info" v-if="!isEdit">{{customer.username}}</div>
                     <div v-else class="info">
                         <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="username">
                     </div>
-                    <div class="info" v-if="!isEdit">&nbsp;phone_number</div>
+                    <div class="info" v-if="!isEdit">&nbsp;{{customer.phone}}</div>
                     <div v-else class="info">
                         <input :class="{'errorInput':phoneErr}" type="text" id="phone" name="phone" v-model="phone">
                     </div>
-                    <div class="info" v-if="!isEdit">&nbsp;email</div>
+                    <div class="info" v-if="!isEdit">&nbsp;{{customer.email}}</div>
                     <div v-else class="info">
                         <input :class="{'errorInput':phoneErr}" type="text" id="email" name="email" v-model="email">
                     </div>
@@ -107,44 +107,25 @@
 
             data() {
                 return {
+                    customer:{
+                        firstname:'',
+                        lastname:'',
+                      username:'',
+                      email:'',
+                      phone:'',
+                      gender:''
+                    },
                     isEdit:false,
                 };
             },
-            created() {
-                this.checkLoggedIn();
-            },
+
             mounted() {
-                axios({
-                    method: 'get',
-                    url: '/customer'
-                }).then(res => {
-                    this.items = res.data.data;
-                });
-
-
+                this.customer=JSON.parse(localStorage.getItem('customer'))
+                console.log(this.customer)
 
             },
             methods:{
-                checkLoggedIn() {
-                    if (localStorage.getItem('customer') === null) {
-                        return;
-                    }
-                    const customer = JSON.parse(localStorage.getItem('customer'));
-                    axios({
-                        method: 'get',
-                        url: '/customer/check',
-                        params: {
-                            token: customer.data.token
-                        }
-                    }).then(res => {
-                        if (res.data.code !== 200) {
-                            localStorage.removeItem('customer');
-                        } else {
-                            console.log(customer);
-                            this.loggedIn = true;
-                        }
-                    });
-                },
+               
                 edit(){
                     this.isEdit=true;
                 },
