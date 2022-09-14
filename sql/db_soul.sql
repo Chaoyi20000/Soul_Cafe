@@ -1,33 +1,4 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
 
-@robbiec2000
-Chaoyi20000
-/
-Soul_Cafe
-Private
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-Soul_Cafe/sql/db_soul.sql
-@robbiec2000
-robbiec2000 update database schema
-                                      Latest commit d393656 11 days ago
-                                      History
-                                      1 contributor
-                                      180 lines (165 sloc)  11.9 KB
-
-/*
- create database soul_cafe character set utf8mb4;
- */
 
             SET FOREIGN_KEY_CHECKS=0;
 
@@ -82,9 +53,9 @@ INSERT INTO `product` VALUES ('3', 'Espresso', '1', '2.50','300', '1.jpg', '', '
 INSERT INTO `product` VALUES ('4', 'Macchiato', '1', '2.80','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
 INSERT INTO `product` VALUES ('5', 'Latte', '1', '2.80','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
 INSERT INTO `product` VALUES ('6', 'Mocha', '1', '2.80','300', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('7', 'Jasmine Tea ', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('7', 'Jasmine Tea', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
 INSERT INTO `product` VALUES ('8', 'Green Tea', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
-INSERT INTO `product` VALUES ('9', 'Ginger Tea ', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
+INSERT INTO `product` VALUES ('9', 'Ginger Tea', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
 INSERT INTO `product` VALUES ('10', 'Black Tea', '2', '2.80','200', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
 INSERT INTO `product` VALUES ('11', 'Mango Passionfruit', '3', '3.00','450', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
 INSERT INTO `product` VALUES ('12', 'Raspberry Blackcurrant', '3', '3.00','450', '1.jpg', '', '1', '0', '2021-05-27 09:38:43', '2021-05-27 09:38:43');
