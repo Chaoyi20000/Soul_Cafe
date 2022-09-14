@@ -69,9 +69,10 @@ public class CustomerController {
         customerService.save(customer);
         return R.success("register success");
     }
-
-
-
-
+    @PutMapping ("/profile")
+    public R<String> edit(@RequestBody Customer customer){
+        customerService.updateById(customer);
+        return R.success("Update successfully!");
+    }
 
 }

@@ -103,7 +103,7 @@
                 <p>Edit</p>
             </div>
             <div class="done-cancel" v-else>
-                <div class="edit" @click="modify()">
+                <div class="edit" @click="updateUser()">
                 <img src="image/done.svg" alt="done">
                 <p>done</p>
                 </div>
@@ -145,17 +145,17 @@
 
             data() {
                 return {
-                    customer:{
-                        firstname:'Amber',
-                        lastname:'Fan',
-                        username:'amber',
-                        email:'amber@soul_cafe.com',
-                        phone:'0448551081',
-                        gender:'0',
+                    customer: {
+                        firstname:'',
+                        lastname:'',
+                        username:'',
+                        email:'',
+                        phone:'',
+                        gender:'',
                         credit:0
-
                     },
                     isEdit:false,
+                    isError:false
                 };
             },
 
@@ -163,16 +163,22 @@
                 this.customer=JSON.parse(localStorage.getItem('customer')).data
             },
             methods:{
-               
+                updateUser(){
+                    console.log(this)
+                    const customer=this._data.customer
+                    axios({
+                        method: 'put',
+                        url: '/profile',
+                        data:customer
+                    })
+                    this.isEdit=false;
+                },
                 edit(){
                     this.isEdit=true;
                 },
                 cancel(){
                     this.isEdit=false;
                 },
-                done(){
-                    this.isEdit=false;
-                }
             }
 
 
