@@ -45,7 +45,7 @@ h3{
 .item div:first-child img{
     width: 120px;
     height: 150px;
-    padding: 10px 0;
+    padding: 10px 10px;
     margin: auto;
     display: block;
 
@@ -77,7 +77,7 @@ h3{
 }
 
 .qty button{
-    background-color: transparent;
+    background-color: blue;
     border:none;
     padding: 0;
 }
@@ -87,9 +87,8 @@ h3{
     display: inline;
 }
 
-.qty input{
-    background-color: transparent;
-    text-align: right;
+.qty p{
+    text-align: center;
     border: 0;
 }
 
@@ -120,7 +119,7 @@ main button{
     padding-right: 0 !important;
 }
 
-.items > p{
+#orderTotal{
     text-align: right;
 }
 

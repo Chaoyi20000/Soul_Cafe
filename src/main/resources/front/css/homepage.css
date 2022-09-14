@@ -30,9 +30,10 @@
 .products-list{
     display:inline-flex;
     flex-wrap: wrap;
-    /* background-color: #572418; */
+     background-color: #572418;
     width: fit-content;
     justify-content: center;
+    max-width: 1000px;
 
 }
 

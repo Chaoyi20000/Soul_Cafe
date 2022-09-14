@@ -57,8 +57,9 @@
 
 
                     <div class="qty">
+
                         <button @click="decrease(item, index)"><img src="image/minus.png" alt="decrease"></button>
-                        <p>{{item.quantity}}</p>
+                        <span>{{item.quantity}}</span>
                         <button @click="increase(item, index)"><img src="image/add.png" alt="increase"></button>
                     </div>
                 </div>
@@ -71,7 +72,7 @@
             </div>
 
 <!--            <div class = "item">-->
-<!--                -->
+
 <!--                <div>-->
 <!--                    <img src="image/espresso.png" alt="espresso">-->
 <!--                </div>-->
@@ -80,14 +81,14 @@
 <!--                    <p><b>espresso</b></p>-->
 <!--                    <p>size:slfhk</p>-->
 <!--                    <p>base:kdlsfj</p>-->
-<!--               -->
+
 
 <!--                    <div class="qty">-->
 <!--                        <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>-->
 <!--                        <label for="quantity"></label>-->
 <!--                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">-->
 <!--                        <button onclick="increase()"><img src="image/add.png" alt="increase"></button>-->
-<!--                    </div>                   -->
+<!--                    </div>-->
 <!--                </div>-->
 
 <!--                <div>-->
@@ -97,7 +98,7 @@
 <!--            </div>-->
 
 <!--            <div class = "item">-->
-<!--                -->
+
 <!--                <div>-->
 <!--                    <img src="image/latte.png" alt="latte">-->
 <!--                </div>-->
@@ -106,14 +107,14 @@
 <!--                    <p><b>latte</b></p>-->
 <!--                    <p>size:slfhk</p>-->
 <!--                    <p>base:kdlsfj</p>-->
-<!--               -->
+
 
 <!--                    <div class="qty">-->
 <!--                        <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>-->
 <!--                        <label for="quantity"></label>-->
 <!--                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">-->
 <!--                        <button onclick="increase()"><img src="image/add.png" alt="increase"></button>-->
-<!--                    </div>                   -->
+<!--                    </div>-->
 <!--                </div>-->
 
 <!--                <div>-->
@@ -121,7 +122,7 @@
 <!--                    <img src="image/bin.png" alt="delete">-->
 <!--                </div>-->
 <!--            </div>-->
-            <p>ORDER TOTAL: {{totalPrice}}$</p>
+            <p id = "orderTotal">ORDER TOTAL: {{totalPrice}}$</p>
         </div>
 
 
