@@ -9,15 +9,18 @@
     <link rel="stylesheet" href="css/profile.css">
     <script type="text/javascript" src="js/vue.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-
+    <script src="https://kit.fontawesome.com/34e820dd12.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="js/axios/axios.min.js"></script>
 
 </head>
 <body>
     <header>
+        <a href="homepage.html">
+            <img src="image/home.svg" alt="profile" style="width: 40px; margin-left: 10px">
+        </a>
 
-      <div class = "shopname">
+      <div class = "shopname" style="margin: 0">
           <a href="homepage.html">
               <img src="image/logo.svg" alt="Cafe logo">
           </a>
@@ -28,40 +31,70 @@
         <a href="profile.html"><img src="image/profile.svg" alt="profile"></a>
         <a href="cart.html"><img src="image/cart.svg" alt="cart"></a>
         <img src="image/logout.svg" alt="logout">
-      </div>
-    </header>
-    <main>
-        <a href="homepage.html">
-            <img src="image/arrowLeft.svg" alt="back" >
-            <p>back</p>
-        </a>
-        <div class="profile">
-        <h1>
-            <p><b>PROFILE</b></p>
-        </h1>
 
+      </div>
+
+    </header>
+    <main id="profile">
+        <div class="profile">
         <div class="img-name-gender">
-            <img src="image/person.svg" alt="person">
-            <p class="name"><b>Amber</b>&nbsp;&nbsp;<img  src="image/male.svg" alt="gender"></p>
+            <img src="image/default_avatar.jpg" alt="Avatar" class="avatar">
+            <div class="name">
+                <span>{{customer.username}}</span>
+                <span v-if="customer.gender === '0'"><i class="fa-solid fa-venus" style="color: hotpink"></i></span>
+                <span v-else><i class="fa-solid fa-mars" style="color: lightskyblue"></i></span>
+            </div>
         </div>
-            <div class="editable-container">
-                <div class="editable-title">
-                    <div class="title"><img  src="image/info-person.svg" alt="person"><b>&nbsp;&nbsp;&nbsp;User&nbsp;name</b></div>
-                    <div class="title"><img  src="image/phone.svg" alt="phone" style="display: inline"><b>&nbsp;&nbsp;&nbsp;Phone&nbsp;number</b></div>
-                    <div class="title"><img  src="image/email.svg" alt="email"><b>&nbsp;Email</b></div>
+            <span></span>
+            <h2 class="big-title">
+
+                <i class="fa-solid fa-user"></i>&nbsp;&nbsp;General Information</h2>
+            <div class="basic-info-container">
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>First Name</span>
+                    </div>
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.firstname}}</div>
+                        <div v-else>
+                            <input v-model="customer.firstname" :class="{'errorInput':isError}" type="text"/>
+                        </div>
+                    </div>
                 </div>
-                <div class="editable-info">
-                    <div class="info" v-if="!isEdit">name</div>
-                    <div v-else class="info">
-                        <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="username">
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Last Name</span>
                     </div>
-                    <div class="info" v-if="!isEdit">&nbsp;phone_number</div>
-                    <div v-else class="info">
-                        <input :class="{'errorInput':phoneErr}" type="text" id="phone" name="phone" v-model="phone">
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.lastname}}</div>
+                        <div v-else>
+                            <input v-model="customer.lastname" :class="{'errorInput':isError}" type="text"/>
+                        </div>
                     </div>
-                    <div class="info" v-if="!isEdit">&nbsp;email</div>
-                    <div v-else class="info">
-                        <input :class="{'errorInput':phoneErr}" type="text" id="email" name="email" v-model="email">
+                </div>
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Mobile Number</span>
+                    </div>
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.phone}}</div>
+                        <div v-else>
+                            <input v-model="customer.phone" :class="{'errorInput':isError}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Email</span>
+                    </div>
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.email}}</div>
+                        <div v-else>
+                            <input v-model="customer.email" :class="{'errorInput':isError}" type="text"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,15 +113,20 @@
                 </div>
             </div>
             <hr>
-            <div class="editable-container">
-                <div class="editable-title">
-                    <div class="title"><img  src="image/member.svg" alt="member"><b>&nbsp;Membership</b></div>
-                    <div class="title"><img  src="image/credit.svg" alt="credit"><b>Credit</b></div>
-
+            <h2 class="big-title"><i class="fa-solid fa-crown"></i>&nbsp;&nbsp;Membership Details</h2>
+            <div class="basic-info-container">
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Membership</span>
+                    </div>
+                    <div class="title-detail" style="color: red">NO</div>
                 </div>
-                <div class="editable-info">
-                    <div class="info">NO</div>
-                    <div class="info">0</div>
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Credit</span>
+                    </div>
+                    <div class="title-detail">{{customer.credit}}</div>
                 </div>
             </div>
         <div id="notice">
@@ -98,53 +136,34 @@
         </div>
     </main>
     <footer>
-      @Copywrite by Soul Cafe
+      @Copyright by Soul Cafe
     </footer>
     <script src="js/axios/axios.min.js"></script>
     <script>
         new Vue({
-            el:"main",
+            el:"#profile",
 
             data() {
                 return {
+                    customer:{
+                        firstname:'Amber',
+                        lastname:'Fan',
+                        username:'amber',
+                        email:'amber@soul_cafe.com',
+                        phone:'0448551081',
+                        gender:'0',
+                        credit:0
+
+                    },
                     isEdit:false,
                 };
             },
-            created() {
-                this.checkLoggedIn();
-            },
+
             mounted() {
-                axios({
-                    method: 'get',
-                    url: '/customer'
-                }).then(res => {
-                    this.items = res.data.data;
-                });
-
-
-
+                this.customer=JSON.parse(localStorage.getItem('customer')).data
             },
             methods:{
-                checkLoggedIn() {
-                    if (localStorage.getItem('customer') === null) {
-                        return;
-                    }
-                    const customer = JSON.parse(localStorage.getItem('customer'));
-                    axios({
-                        method: 'get',
-                        url: '/customer/check',
-                        params: {
-                            token: customer.data.token
-                        }
-                    }).then(res => {
-                        if (res.data.code !== 200) {
-                            localStorage.removeItem('customer');
-                        } else {
-                            console.log(customer);
-                            this.loggedIn = true;
-                        }
-                    });
-                },
+               
                 edit(){
                     this.isEdit=true;
                 },
