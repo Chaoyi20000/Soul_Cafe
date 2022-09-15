@@ -57,7 +57,7 @@
                     <div class="title-detail">
                         <div v-if="!isEdit">{{customer.firstname}}</div>
                         <div v-else>
-                            <input v-model="customer.firstname" :class="{'errorInput':isError}" type="text"/>
+                            <input v-model="customer.firstname" :class="{'errorInput':firstnameErr}" type="text"/>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="title-detail">
                         <div v-if="!isEdit">{{customer.lastname}}</div>
                         <div v-else>
-                            <input v-model="customer.lastname" :class="{'errorInput':isError}" type="text"/>
+                            <input v-model="customer.lastname" :class="{'errorInput':lastnameErr}" type="text"/>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <div class="title-detail">
                         <div v-if="!isEdit">{{customer.phone}}</div>
                         <div v-else>
-                            <input v-model="customer.phone" :class="{'errorInput':isError}" type="text"/>
+                            <input v-model="customer.phone" :class="{'errorInput':phoneErr}" type="text"/>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <div class="title-detail">
                         <div v-if="!isEdit">{{customer.email}}</div>
                         <div v-else>
-                            <input v-model="customer.email" :class="{'errorInput':isError}" type="text"/>
+                            <input v-model="customer.email" :class="{'errorInput':emailErr}" type="text"/>
                         </div>
                     </div>
                 </div>
@@ -155,29 +155,83 @@
                         credit:0
                     },
                     isEdit:false,
-                    isError:false
+                    emailErr:false,
+                    phoneErr:false,
+                    firstnameErr: false,
+                    lastnameErr: false,
+                    originalCustomer: {}
                 };
             },
 
             mounted() {
                 this.customer=JSON.parse(localStorage.getItem('customer')).data
+                console.log(this.customer)
             },
             methods:{
                 updateUser(){
-                    console.log(this)
-                    const customer=this._data.customer
+                    const customer = this.customer;
+                    let valid = true;
+
+                    if(customer.firstname === ''){
+                        this.firstnameErr = true;
+                        valid = false;
+                    }else{
+                        this.firstnameErr = false;
+
+                    }
+
+                    if(customer.lastname === ''){
+                        this.lastnameErr = true;
+                        valid = false;
+                    }else{
+                        this.lastnameErr = false;
+                    }
+
+                    const emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+                    const phonePattern = /^04[0-9]{8}$/
+
+                    if(!emailPattern.test(customer.email)){
+                        this.emailErr = true;
+                        valid = false;
+                    }else{
+                        this.emailErr = false;
+                    }
+
+                    if(!phonePattern.test(customer.phone)){
+                        this.phoneErr = true;
+                        valid = false;
+                    }else{
+                        this.phoneErr = false;
+                    }
+                    if(valid === false){
+                        this.$message("Please enter your details correctly");
+                        return;
+                    }
+                    console.log(customer)
+
                     axios({
                         method: 'put',
-                        url: '/profile',
+                        url: '/customer/profile',
                         data:customer
-                    })
-                    this.isEdit=false;
+                    }).then(res => {
+                        if(res.data.code === 200){
+                            this.$message("Update profile successful");
+                            localStorage.setItem('customer',JSON.stringify(res.data))
+                            this.isEdit=false;
+                        }else{
+                            this.$message("Update profile fail");
+                            this.cancel();
+                        }
+                    });
+
+
                 },
                 edit(){
                     this.isEdit=true;
                 },
                 cancel(){
                     this.isEdit=false;
+                    this.customer= JSON.parse(localStorage.getItem('customer')).data;
                 },
             }
 
