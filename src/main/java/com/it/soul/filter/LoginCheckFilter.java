@@ -54,6 +54,7 @@ public class LoginCheckFilter implements Filter {
             return;
         }
 
-        response.getWriter().write(JSON.toJSONString(R.error("NOT LOGIN")));
+        //response.getWriter().write(JSON.toJSONString(R.error("NOT LOGIN")));
+        response.sendRedirect("/login.html");
     }
 }

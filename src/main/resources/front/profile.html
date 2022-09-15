@@ -15,6 +15,7 @@
 
 </head>
 <body>
+<div id="app">
     <header>
         <a href="homepage.html">
             <img src="image/home.svg" alt="profile" style="width: 40px; margin-left: 10px">
@@ -28,10 +29,9 @@
       </div>
 
       <div class = "icons">
-        <a href="profile.html"><img src="image/profile.svg" alt="profile"></a>
-        <a href="cart.html"><img src="image/cart.svg" alt="cart"></a>
-        <img src="image/logout.svg" alt="logout">
-
+          <a href="profile.html"><img src="image/profile.svg" alt="profile"></a>
+          <a href="cart.html"><img src="image/cart.svg" alt="cart"></a>
+          <span @click="logout()"><img src="image/logout.svg" alt="logout"></span>
       </div>
 
     </header>
@@ -138,10 +138,11 @@
     <footer>
       @Copyright by Soul Cafe
     </footer>
+</div>
     <script src="js/axios/axios.min.js"></script>
     <script>
         new Vue({
-            el:"#profile",
+            el:"#app",
 
             data() {
                 return {
@@ -165,7 +166,6 @@
 
             mounted() {
                 this.customer=JSON.parse(localStorage.getItem('customer')).data
-                console.log(this.customer)
             },
             methods:{
                 updateUser(){
@@ -207,8 +207,6 @@
                         this.$message("Please enter your details correctly");
                         return;
                     }
-                    console.log(customer)
-
                     axios({
                         method: 'put',
                         url: '/customer/profile',
@@ -223,8 +221,6 @@
                             this.cancel();
                         }
                     });
-
-
                 },
                 edit(){
                     this.isEdit=true;
@@ -233,9 +229,20 @@
                     this.isEdit=false;
                     this.customer= JSON.parse(localStorage.getItem('customer')).data;
                 },
+                logout(){
+                    const customer = this.customer;
+                    axios({
+                        method: 'post',
+                        url: '/customer/logout',
+                        params: {
+                            token: customer.token
+                        }
+                    }).then(res =>{
+                        localStorage.removeItem('customer');
+                        window.location.href = '/homepage.html';
+                    })
+                }
             }
-
-
         })
     </script>
 
