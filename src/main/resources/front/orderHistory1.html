@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="stylesheet" href="css/headingFooter.css">
+    <link rel="stylesheet" href="css/orderHistory1.css">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <header>
+        <div class = "shopname">
+            <a href="homepage.html">
+                <img src="image/logo.svg" alt="Cafe logo">
+            </a>
+            <h1>Soul Cafe</h1>   
+        </div>
+        
+        <div class = "icons">
+            <a href="profile"><img src="image/profile.svg" alt="profile"></a>
+            <a href="cart"><img src="image/cart.svg" alt="cart"></a>
+            <img src="image/logout.svg" alt="logout">
+        </div>
+    </header>
+
+    <main id = "app">
+        <a href="homepage.html">
+            <img src="image/arrowLeft.svg" alt="back" >
+            <p>Back</p>
+        </a> 
+        <!-- 切换当前order和历史order -->
+        <div class = "switcher">
+            <p class = "switcher1">Current Order</p>
+            <p class = "switcher2">History Order&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+        </div>
+        
+
+        <!-- 每一单order的格式 -->
+        <div class = "items">
+            <div v-for="(item, index) in items" class="item">
+
+                <div class = "contents">
+                    <p>ORDER NUMBER:</p>
+                    <p>ORDER TOTAL: $price</p>
+                    <p>ORDER DETIALS</p>
+                    <p>productName</p>
+                    <p>size: m &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp base: NA</p>
+                    <p>X qty</p>
+                    <p>$price</p>
+                    <p>STATUS: IN PROGRESS</p>
+                    <p>Ready at: 9:00 AM</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="message">
+            <p>Please contact 123456 if something wrong with your order.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        @Copyright by Soul Cafe
+    </footer>
+
+
+</body>
+</html>
