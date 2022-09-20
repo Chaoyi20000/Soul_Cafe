@@ -81,6 +81,7 @@
                             }else{
                                 this.$message(res.data.msg);
                                 this.isError = true;
+                                this.loading = false;
                             }
                         }).catch(err => {
                         })
