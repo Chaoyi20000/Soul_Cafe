@@ -14,8 +14,10 @@
 </head>
 <body>
 <header>
-
-    <div class = "shopname">
+    <a href="homepage.html">
+        <img src="image/home.svg" alt="profile" style="width: 40px; margin-left: 10px">
+    </a>
+    <div class = "shopname" style="margin: 0">
         <a href="homepage.html">
             <img src="image/logo.svg" alt="Cafe logo">
         </a>
@@ -29,37 +31,29 @@
     </div>
 </header>
 <main>
-    <a href="homepage.html" class="back">
-        <img  src="image/arrowLeft.svg" alt="back">
-        <p>back</p>
-    </a>
+
     <div class = "switcher">
         <buttonn class="swtbtn" @click="change(0)":class="{orderStyle:0===number}">Current Order</buttonn>
         <button class="swtbtn" @click ="change(1)":class="{orderStyle:1===number}">History Order</button>
     </div>
     <div class="order">
         <div class="detail">
-            <div v-show="0===number" class="time"> Your order will be ready at <span>{{time}}</span></div>
-            <div class="statusNumber">
-                <p>ORDER NUMBER: <span>{{id}}</span></p>
-                <p>ORDER STATUS: <span>{{ostatus}}</span></p>
+            <div class="statusNumberTime">
+                <div>ORDER NUMBER: <span>{{id}}</span></div>
+                <div>ORDER STATUS: <span>{{ostatus}}</span></div>
+                <div v-show="0===number" class="time"> READY AT <span>{{time}}</span></div>
+                <div v-show="1===number" class="time"> FINISHED AT <span>{{time}}</span></div>
             </div>
-            <h3>ORDER DETAILS</h3>
+            <h4 style="margin-top: 30px">ORDER DETAILS</h4>
             <div  class = "item">
-                <el-image :src="getImage()" >
-                    <div slot="error" class="image-slot">
-                        <img  src="./image/noImg.png">
-                    </div>
-                </el-image>
-                <div class="name-size-base">
-                    <p><b>{{pname}}</b></p>
-                    <p>size:{{size}}</p>
-                    <p>base:{{base}}</p>
+                <div><p><b>{{pname}}</b></p></div>
+                <div class="size-base">
+                    <p>size:{{size}} base:{{base}}</p>
+                    <p></p>
                 </div>
-
+                <div><b>X{{quantity}}</b></div>
                 <div class="price">
                     <p><b><span>${{price}}</span></b> </p>
-                    <div class="number"><b>X{{quantity}}</b> </div>
                 </div>
             </div>
             <div class="total"><b>ORDER TOTAL:<span>$11</span></b></div>
@@ -90,12 +84,11 @@
                     base:"soy",
                     quantity:1,
                     price:1
-                }
 
-
+            }
         },
         methods:{
-            change:function (index){
+            change(index){
                 this.number=index;
             },
             getImage(){
