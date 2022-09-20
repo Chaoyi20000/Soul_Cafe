@@ -30,45 +30,48 @@
 </header>
 <main>
     <a href="homepage.html" class="back">
-        <img  src="image/back.svg" alt="back">
+        <img  src="image/arrowLeft.svg" alt="back">
         <p>back</p>
     </a>
-    <p class="time"> Your order will be ready at <span>{{time}}AM</span></p>
+    <div class = "switcher">
+        <buttonn class="swtbtn" @click="change(0)":class="{orderStyle:0===number}">Current Order</buttonn>
+        <button class="swtbtn" @click ="change(1)":class="{orderStyle:1===number}">History Order</button>
+    </div>
     <div class="order">
-        <div class="statusNumber">
-            <p>ORDER NUMBER: <span>{{number}}</span></p>
-            <p>ORDER STATUS: <span>{{orderStatus}}</span></p>
-        </div>
         <div class="detail">
+            <div v-show="0===number" class="time"> Your order will be ready at <span>{{time}}</span></div>
+            <div class="statusNumber">
+                <p>ORDER NUMBER: <span>{{id}}</span></p>
+                <p>ORDER STATUS: <span>{{ostatus}}</span></p>
+            </div>
             <h3>ORDER DETAILS</h3>
-            <div v-for="product in order" class = "item">
-                <el-image :src="getImage(product)" >
+            <div  class = "item">
+                <el-image :src="getImage()" >
                     <div slot="error" class="image-slot">
                         <img  src="./image/noImg.png">
                     </div>
                 </el-image>
-
                 <div class="name-size-base">
-                    <p><b>{{product.name}}</b></p>
-                    <p>size:{{product.size}}</p>
-                    <p>base:{{product.base}}</p>
-
+                    <p><b>{{pname}}</b></p>
+                    <p>size:{{size}}</p>
+                    <p>base:{{base}}</p>
                 </div>
 
                 <div class="price">
-                    <p><b><span>${{product.price}}}</span></b> </p>
-                    <div class="number"><b>X {{product.getQuantity()}}</b> </div>
+                    <p><b><span>${{price}}</span></b> </p>
+                    <div class="number"><b>X{{quantity}}</b> </div>
                 </div>
             </div>
+            <div class="total"><b>ORDER TOTAL:<span>$11</span></b></div>
         </div >
-        <div class="total"><b>ORDER TOTAL: <span>$11</span></b></div>
+
         <div class="contact"><b>
             Please contact <span>123456</span> if something wrong with your order.
         </b></div>
     </div>
 </main>
 <footer>
-    @Copywrite by Soul Cafe
+    @Copywriter by Soul Cafe
 </footer>
 <script src="js/axios/axios.min.js"></script>
 <script>
@@ -76,11 +79,40 @@
         el:"main",
         data(){
             return {
-                products:[],
-                isCoffee: false,
+                id:1111,
+                ostatus:"IN PROGRESS",
+                number:0,
+                loggedIn: false,
+                time:"9:00 AM",
+                orderStatus:"IN PROGRESS",
+                    pname:"Latte",
+                    size:"m",
+                    base:"soy",
+                    quantity:1,
+                    price:1
+                }
 
 
-
+        },
+        methods:{
+            change:function (index){
+                this.number=index;
+            },
+            getImage(){
+              return "./image/latte.png";
+            },
+            logout(){
+                const customer = this.customer;
+                axios({
+                    method: 'post',
+                    url: '/customer/logout',
+                    params: {
+                        token: customer.token
+                    }
+                }).then(res =>{
+                    localStorage.removeItem('customer');
+                    window.location.href = '/homepage.html';
+                })
             }
         }
     })
