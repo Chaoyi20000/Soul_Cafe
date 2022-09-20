@@ -27,7 +27,7 @@
     </header>
 
     <main>
-            <div class="registerContainer">
+            <div class="registerContainer" v-loading="loading" element-loading-background="rgba(255, 255, 255, 0.5)">
                 <div class="signTitle">Sign In</div>
                 <div class="signPrompt">Login to order our products and enjoy drinkings!</div>
                 <form :model="form">
@@ -55,6 +55,7 @@
                     username:'',
                     password:'',
                     isError:false,
+                    loading:false,
                 };
             },
             created() {
@@ -64,6 +65,7 @@
             methods: {
                 login(){
                     if(this.username.length > 0 && this.password.length > 0){
+                        this.loading = true;
                         this.isError = false;
                         axios({
                             method: 'post',

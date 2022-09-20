@@ -16,7 +16,7 @@ public class OrderDetail implements Serializable {
 
     private String image;
 
-    private Long orderId;
+    private Integer orderId;
 
     private Long productId;
 

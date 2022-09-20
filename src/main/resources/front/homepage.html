@@ -50,9 +50,9 @@
             </div>
         </div>
 
-        <div class="products" id="products">
+        <div class="products" id="products" >
             <h1>Our Products</h1>
-            <div class="products-list">
+            <div class="products-list" v-loading="loadingProduct">
                 <div v-for="product in products" class="product">
                     <el-image :src="getImage(product)">
                         <div slot="error" class="image-slot">
@@ -114,7 +114,7 @@
     </main>
 
     <footer>
-        @Copywrite by Soul Cafe
+        @Copyright by Soul Cafe
     </footer>
 </div>
 
@@ -130,6 +130,7 @@
                 loggedIn: false,
                 products: [],
                 isCoffee: false,
+                loadingProduct: true,
                 selected: {
                     name: '',
                     extra: [],
@@ -152,6 +153,7 @@
                 url: '/product'
             }).then(res => {
                 this.products = res.data.data;
+                this.loadingProduct = false;
             });
 
             window.onresize = () => {

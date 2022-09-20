@@ -34,6 +34,7 @@ h3{
     gap: 0 10px;
     background-color: #EADDD1;
     border-radius: 30px;
+    box-shadow: 2px 2px 2px #cecece;
     margin-bottom: 30px;
 }
 
@@ -77,7 +78,6 @@ h3{
 }
 
 .qty button{
-    background-color: blue;
     border:none;
     padding: 0;
 }
@@ -105,16 +105,32 @@ h3{
     padding-top: 70px;
 }
 
-main button{
-    display: block;
+.checkOutBtn{
     border: none;
     font-size: 18px;
+    width: 75px;
     color: white;
     padding: 10px 15px;
     border-radius: 15px;
     background-color: #9E591F;
     margin: auto;
 }
+
+.subtotal{
+    font-size: 20px;
+    float: right;
+}
+
+
+
+.tag{
+    border-color: brown;
+    border-style: solid;
+    border-radius: 5px;
+    color: brown;
+    padding: 1px;
+}
+
 .el-popup-parent--hidden{
     padding-right: 0 !important;
 }
@@ -124,7 +140,6 @@ main button{
 }
 
 form{
-
     height: fit-content;
     width: fit-content;
     display: block;
@@ -138,36 +153,20 @@ form > div{
 
 form p{
     text-align: center;
-    color: #6D3E16;
     font-size: 30px;
     margin-top:-5px;
 }
 
 
-form > input[type=text]{
+input[type=text]{
     width: 100%;
     padding: 12px 0;
-
     box-sizing: border-box;
     background: transparent;
     border: solid #9F9F9F;
     outline: none;
     -webkit-transition: 0.5s;
     transition: 0.5s;
-}
-input[type=num] {
-    width: 80%;
-    padding: 12px 0;
-    margin: 8px 0;
-    box-sizing: border-box;
-    background: transparent;
-    border: solid #9F9F9F;
-    outline: none;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-}
-input#cvv, .cvv {
-  margin-left: 19%;
 }
 
 input[type=text]:focus {
@@ -180,7 +179,7 @@ input[type=button]{
     margin: 22px 0;
     width: 100%;
     color: white;
-    background: #6D3E16;
+    background-color: #9E591F;
     border: solid #9F9F9F;
 
 }

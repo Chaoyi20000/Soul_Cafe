@@ -16,6 +16,8 @@ public class Orders implements Serializable {
 
     private Integer status;
 
+    private Long customerId;
+
     private LocalDateTime orderTime;
 
     private Integer pay_method;
