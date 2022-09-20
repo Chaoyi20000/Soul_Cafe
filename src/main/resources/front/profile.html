@@ -214,7 +214,6 @@
                     }).then(res => {
                         if(res.data.code === 200){
                             this.$message("Update profile successful");
-                            localStorage.setItem('customer',JSON.stringify(res.data))
                             this.isEdit=false;
                         }else{
                             this.$message("Update profile fail");
