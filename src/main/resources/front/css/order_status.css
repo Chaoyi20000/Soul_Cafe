@@ -15,22 +15,16 @@ main a{
     color: #9E591F;
 }
 
-.time{
-    font-size: 25px;
-    text-align: center;
-    color: black;
-    padding-top: 2%;
-}
 .switcher{
     border: none;
     width: 100%;
     margin-top: 5%;
-    margin-left: 25%;
+    margin-left: 30%;
     margin-bottom: 4%;
 }
 
 .swtbtn{
-    width: 50%;
+    margin-right: 10%;
     padding: 25px 0;
     border: none;
     background: #F7F7F7;
@@ -41,11 +35,12 @@ main a{
     color: #9E591F;
     font-weight: bold;
 }
-.statusNumber{
-    font-size: 20px;
-
+.statusNumberTime{
+    display: flex;
+    gap: 7%;
+    font-size: 15px;
 }
-.time span, .statusNumber span, .contact span{
+.time span, .statusNumberTime span, .contact span{
     color: #9E591F;
 }
 .total span, .price span{
@@ -57,43 +52,30 @@ main a{
     grid-template-columns: repeat(1, 100px 20px 80px);
     gap: 0 10px;
     border: 2px solid #9E591F;
-
+    border-radius: 25px;
     margin-bottom: 15px;
-    padding: 5%;
+    padding: 3%;
+    width: 70%;
+    margin-left: 10%;
 }
 .item {
-    grid-template-columns: repeat(1, 70px 20px 80px);
+    max-width: 600px;
+    grid-template-columns: repeat(1, 20% 30% 25% 25%);
     padding: 2%;
-    border: 2px solid #9E591F;
     display: flex;
-
-}
-.item img{
-    max-height: 100px;
-    width: 85%;
-    height: 80%;
-    padding: 14px;
-    margin: auto;
-    display: block;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.name-size-base{
-    margin-left: 22%;
-}
-
-.price{
-    margin-left: 30%;
-}
-
-.price.number{
-    margin-top: 20%;
-}
 .total{
-    margin-top: 10%;
-    margin-left: 80%;
+    margin-top: 2%;
+    margin-left: 76%;
 }
 .contact{
     margin-top:20%;
 }
 @media screen and (max-width: 560px) {
+    .switcher{
+        margin-left: 15%;
+    }
 }
