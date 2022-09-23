@@ -31,7 +31,9 @@ public class CartController {
     public R<String> addCart(@RequestBody Cart cart){
 
         LambdaQueryWrapper<Cart> qw = new LambdaQueryWrapper<>();
-        qw = qw.eq(Cart::getProductName, cart.getProductName()).eq(Cart::getExtra, cart.getExtra());
+        qw = qw.eq(Cart::getProductName, cart.getProductName()).eq(Cart::getExtra, cart.getExtra())
+                .eq(Cart::getSize, cart.getSize()).eq(Cart::getCustomerId, cart.getCustomerId());
+
         Cart exist = cartService.getOne(qw);
 
         if(exist != null){

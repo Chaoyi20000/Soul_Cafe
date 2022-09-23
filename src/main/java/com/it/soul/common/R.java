@@ -34,4 +34,8 @@ public class R<T> {
         return this;
     }
 
+    public T getData(){
+        return data;
+    }
+
 }
