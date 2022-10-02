@@ -37,6 +37,8 @@
 
         <h3><em><b>Your Cart</b> </em> </h3>
 
+        <div v-loading="loadCart" v-if="loadCart" style="height: 150px" element-loading-background="rgba(255, 255, 255, 0.0)"></div>
+
         <div class = "items" v-if="hasItem">
             <h3>Your Order: ({{items.length}} ITEM)</h3>
 
@@ -75,8 +77,7 @@
             </div>
             <div class="subtotal" id = "subtotal">Subtotal: <span style="color: red; font-weight: bold">${{totalPrice}}</span></div>
         </div>
-        <h3 v-else><em><b>Your cart is empty. Please go to <a href="homepage.html">homepage</a> add some products!</b> </em> </h3>
-
+        <h3><em><b>{{msg}}</b></em></h3>
 
 
         <div id="checkout">
@@ -129,11 +130,13 @@
                     remark:'',
                     expireDate:'',
                     loading:false,
+                    loadCart: true,
                     hasItem:false,
                     confirmDelete:false,
                     cardErr:false,
                     cvvErr:false,
-                    expireDateErr: false
+                    expireDateErr: false,
+                    msg:''
                 };
             },
             created() {
@@ -151,13 +154,14 @@
                         this.items = res.data.data;
                         this.getTotalPrice(this.items);
                         if(this.items.length === 0){
-                            this.hasItem = false;
+                            this.msg ="Your cart is empty. Please go to homepage add some products!"
                         }else{
                             this.hasItem = true;
                         }
                     }else{
                         console.log("fail to get cart.");
                     }
+                    this.loadCart = false;
 
                 });
 
@@ -291,6 +295,7 @@
                                 this.getTotalPrice(this.items);
                                 if(this.items.length === 0){
                                     this.hasItem = false;
+                                    this.msg ="Your cart is empty. Please go to homepage add some products!"
                                 }
                             }
                         })
