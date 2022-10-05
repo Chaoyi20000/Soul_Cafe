@@ -7,6 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class Orders implements Serializable {
@@ -29,6 +30,9 @@ public class Orders implements Serializable {
     private String phone;
 
     private String customerName;
+
+    @TableField(exist = false)
+    private List<OrderDetail> orderDetails;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

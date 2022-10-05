@@ -2,6 +2,7 @@ package com.it.soul.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.it.soul.common.R;
 import com.it.soul.composite.OrderDto;
 import com.it.soul.model.Cart;
@@ -47,7 +48,7 @@ public class OrderController {
 
         System.out.println(orderInfo);
 
-        Customer customer = TokenUtils.getCustomer(token);
+       Customer customer = TokenUtils.getCustomer(token);
         Long customerId = customer.getId();
 
         Orders order = new Orders();
@@ -80,7 +81,11 @@ public class OrderController {
             orderDetail.setOrderId(orderNumber);
             orderDetail.setProductName(product.getProductName());
             orderDetail.setSize(product.getSize());
-            orderDetail.setExtra(product.getExtra());
+            if(product.getExtra().isEmpty()){
+                orderDetail.setExtra("no base");
+            }else{
+                orderDetail.setExtra(product.getExtra());
+            }
             orderDetail.setAmount(product.getAmount());
             orderDetail.setQuantity(product.getQuantity());
             orderDetail.setProductId(product.getProductId());
@@ -95,6 +100,26 @@ public class OrderController {
 
 
         return R.success("Place order successfully");
+    }
+
+    @GetMapping
+    public R<List<Orders>> getOrders(Long customerId, int page, int size){
+        Page<Orders> orders = new Page<>(page,size);
+        LambdaQueryWrapper<Orders> qw = new LambdaQueryWrapper<>();
+        qw.eq(Orders::getCustomerId, customerId);
+        qw.orderByDesc(Orders::getUpdateTime);
+        orderService.page(orders,qw);
+
+        List<Orders> ordersList = orders.getRecords();
+
+        for (Orders order : ordersList) {
+            LambdaQueryWrapper<OrderDetail> qw2 = new LambdaQueryWrapper<>();
+            qw2.eq(OrderDetail::getOrderId, order.getNumber());
+            List<OrderDetail> orderDetails = orderDetailService.list(qw2);
+            order.setOrderDetails(orderDetails);
+        }
+
+        return R.success(ordersList);
     }
 
 }
