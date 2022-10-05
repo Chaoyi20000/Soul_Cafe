@@ -36,9 +36,12 @@ main a{
     font-weight: bold;
 }
 .statusNumberTime{
+    margin-top: 4%;
     display: flex;
+    flex-flow: row wrap;
     gap: 7%;
     font-size: 15px;
+    row-gap: 11px;
 }
 .time span, .statusNumberTime span, .contact span{
     color: #9E591F;
@@ -47,12 +50,15 @@ main a{
     color: red;
     display: inline-block;
 }
-
+.hr-tr{
+    border: 0;
+    padding: 3px;
+    background: repeating-linear-gradient(135deg, #9E591F 0px, #9E591F 1px, transparent 1px, transparent 6px);
+}
 .detail{
     grid-template-columns: repeat(1, 100px 20px 80px);
     gap: 0 10px;
-    border: 2px solid #9E591F;
-    border-radius: 25px;
+    border: 1.5px solid #9E591F;
     margin-bottom: 15px;
     padding: 3%;
     width: 70%;
@@ -68,7 +74,7 @@ main a{
 }
 
 .total{
-    margin-top: 2%;
+    margin-top: 5%;
     margin-left: 76%;
 }
 .contact{
@@ -76,6 +82,17 @@ main a{
 }
 @media screen and (max-width: 560px) {
     .switcher{
-        margin-left: 15%;
+        margin-left: 15% ;
+    }
+    .swtbtn{
+        font-size: 15px;
+        margin-left: 5%;
+    }
+    .item{
+        font-size: 10px;
+    }
+    .total{
+        font-size: 10px;
+        margin-left: 60%;
     }
 }

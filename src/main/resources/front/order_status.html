@@ -30,33 +30,38 @@
         <img src="image/logout.svg" alt="logout">
     </div>
 </header>
-<main>
-
+<main id="app">
     <div class = "switcher">
         <buttonn class="swtbtn" @click="change(0)":class="{orderStyle:0===number}">Current Order</buttonn>
         <button class="swtbtn" @click ="change(1)":class="{orderStyle:1===number}">History Order</button>
     </div>
     <div class="order">
         <div class="detail">
+            <div class="orderNumber">
+                <div><b>ORDER NUMBER: <span>{{id}}</span></b></div>
+            </div>
+            <hr class="hr-tr">
             <div class="statusNumberTime">
-                <div>ORDER NUMBER: <span>{{id}}</span></div>
+
                 <div>ORDER STATUS: <span>{{ostatus}}</span></div>
                 <div v-show="0===number" class="time"> READY AT <span>{{time}}</span></div>
                 <div v-show="1===number" class="time"> FINISHED AT <span>{{time}}</span></div>
             </div>
-            <h4 style="margin-top: 30px">ORDER DETAILS</h4>
+            <h5 style="margin-top: 30px">ORDER DETAILS</h5>
             <div  class = "item">
                 <div><p><b>{{pname}}</b></p></div>
                 <div class="size-base">
                     <p>size:{{size}} base:{{base}}</p>
                     <p></p>
                 </div>
-                <div><b>X{{quantity}}</b></div>
+                <div>X{{quantity}}</div>
                 <div class="price">
-                    <p><b><span>${{price}}</span></b> </p>
+                    <p><span>${{price}}</span> </p>
                 </div>
             </div>
+            <hr>
             <div class="total"><b>ORDER TOTAL:<span>$11</span></b></div>
+
         </div >
 
         <div class="contact"><b>
@@ -70,7 +75,7 @@
 <script src="js/axios/axios.min.js"></script>
 <script>
     new Vue({
-        el:"main",
+        el:"#app",
         data(){
             return {
                 id:1111,
@@ -84,7 +89,6 @@
                     base:"soy",
                     quantity:1,
                     price:1
-
             }
         },
         methods:{
