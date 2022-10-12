@@ -9,13 +9,13 @@ import com.it.soul.model.Cart;
 import com.it.soul.model.Customer;
 import com.it.soul.model.OrderDetail;
 import com.it.soul.model.Orders;
-import com.it.soul.service.CartService;
-import com.it.soul.service.CustomerService;
-import com.it.soul.service.OrderDetailService;
-import com.it.soul.service.OrderService;
+import com.it.soul.service.*;
 import com.it.soul.utils.TokenUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +23,13 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 @RestController
+@EnableScheduling
+@Slf4j
 @RequestMapping("/order")
 public class OrderController {
 
@@ -41,6 +45,11 @@ public class OrderController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private EmailService emailService;
+
+    private Queue<Orders> ordersQueue = new LinkedList<>();
 
     @Transactional
     @PostMapping
@@ -97,6 +106,7 @@ public class OrderController {
         cartService.remove(qw);
         customer.setCredit(customer.getCredit() + subtotal.intValue());
         customerService.updateById(customer);
+        ordersQueue.add(order);
 
 
         return R.success("Place order successfully");
@@ -122,4 +132,14 @@ public class OrderController {
         return R.success(ordersList);
     }
 
+    @Scheduled(fixedRate = 180000)
+    public void completeOrder(){
+        Orders order = ordersQueue.poll();
+        if(order != null){
+            order.setStatus(2);
+            orderService.updateById(order);
+            emailService.sendMail("stevenshichaoyi@gmail.com", order.getCustomerName(), order.getNumber().toString());
+            log.info("order" + order.getNumber() + " has completed");
+        }
+    }
 }
