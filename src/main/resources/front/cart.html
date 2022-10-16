@@ -26,7 +26,7 @@
             <a href="profile.html"><img src="image/profile.svg" alt="profile"></a>
             <a href="cart.html"><img src="image/cart.svg" alt="cart"></a>
             <a href="order.html"><img src="image/order.svg" alt="order"></a>
-            <img src="image/logout.svg" alt="logout">
+            <a href="homepage.html"><img src="image/logout.svg" alt="logout" @click="logout()"></a>
         </div>
     </header>
 
@@ -281,6 +281,20 @@
 
                 },
 
+                logout(){
+                    const customer = this.customer;
+                    axios({
+                        method: 'post',
+                        url: '/customer/logout',
+                        params: {
+                            token: customer.token
+                        }
+                    }).then(res =>{
+                        localStorage.removeItem('customer');
+                        window.location.href = '/homepage.html';
+                    })
+                },
+
                 openPrompt(product,index) {
                     this.$confirm('Are you going to remove the product from the cart?', 'Message', {
                         confirmButtonText: 'Yes',
@@ -304,8 +318,6 @@
                     });
                 }
             }
-
-
         })
     </script>
 
