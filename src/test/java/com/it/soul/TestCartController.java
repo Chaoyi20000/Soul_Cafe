@@ -54,12 +54,12 @@ public class TestCartController {
         Assertions.assertTrue(res.contains("code=200"));
     }
 
-    @Test
+    /*@Test
     void testGetCartCorrect(){
         LambdaQueryWrapper<Cart> qw = new LambdaQueryWrapper<>();
         qw.eq(Cart::getCustomerId, 1572110413917712386L);
         String res = cartService.list(qw).toString();
         String expected = "[Cart(id=1572491458717745153, productName=Mocha, image=null, customerId=1572110413917712386, productId=6, size=medium, extra=full cream, quantity=3, amount=3.30, createTime=2022-09-21T07:42:34, updateTime=2022-09-21T08:13:58)]";
         Assertions.assertEquals(expected, res);
-    }
+    }*/
 }
