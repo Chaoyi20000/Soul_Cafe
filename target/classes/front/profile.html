@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link rel="stylesheet" href="css/headingFooter.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://kit.fontawesome.com/34e820dd12.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="js/axios/axios.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <header>
+        <a href="homepage.html">
+            <img src="image/home.svg" alt="profile" style="width: 40px; margin-left: 10px">
+        </a>
+
+      <div class = "shopname" style="margin: 0">
+          <a href="homepage.html">
+              <img src="image/logo.svg" alt="Cafe logo">
+          </a>
+        <h1>Soul Cafe</h1>
+      </div>
+
+      <div class = "icons">
+          <a href="profile.html"><img src="image/profile.svg" alt="profile"></a>
+          <a href="cart.html"><img src="image/cart.svg" alt="cart"></a>
+          <a href="order.html"><img src="image/order.svg" alt="order"></a>
+          <span @click="logout()"><img src="image/logout.svg" alt="logout"></span>
+      </div>
+
+    </header>
+    <main id="profile">
+        <div class="profile">
+        <div class="img-name-gender">
+            <img src="image/default_avatar.jpg" alt="Avatar" class="avatar">
+            <div class="name">
+                <span>{{customer.username}}</span>
+                <span v-if="customer.gender === '0'"><i class="fa-solid fa-venus" style="color: hotpink"></i></span>
+                <span v-else><i class="fa-solid fa-mars" style="color: lightskyblue"></i></span>
+            </div>
+        </div>
+            <span></span>
+            <h2 class="big-title">
+
+                <i class="fa-solid fa-user"></i>&nbsp;&nbsp;General Information</h2>
+            <div class="basic-info-container">
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>First Name</span>
+                    </div>
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.firstname}}</div>
+                        <div v-else>
+                            <input v-model="customer.firstname" :class="{'errorInput':firstnameErr}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Last Name</span>
+                    </div>
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.lastname}}</div>
+                        <div v-else>
+                            <input v-model="customer.lastname" :class="{'errorInput':lastnameErr}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Mobile Number</span>
+                    </div>
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.phone}}</div>
+                        <div v-else>
+                            <input v-model="customer.phone" :class="{'errorInput':phoneErr}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Email</span>
+                    </div>
+                    <div class="title-detail">
+                        <div v-if="!isEdit">{{customer.email}}</div>
+                        <div v-else>
+                            <input v-model="customer.email" :class="{'errorInput':emailErr}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="edit" v-if="!isEdit" @click="edit()">
+                <img src="image/edit.svg" alt="edit">
+                <p>Edit</p>
+            </div>
+            <div class="done-cancel" v-else>
+                <div class="edit" @click="updateUser()">
+                <img src="image/done.svg" alt="done">
+                <p>done</p>
+                </div>
+                <div class="edit" @click="cancel()">
+                    <img src="image/cancel.svg" alt="cancel">
+                    <p>cancel</p>
+                </div>
+            </div>
+            <hr>
+            <h2 class="big-title"><i class="fa-solid fa-crown"></i>&nbsp;&nbsp;Membership Details</h2>
+            <div class="basic-info-container">
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Orders</span>
+                    </div>
+                    <div class="title-detail" style="color: red">NO</div>
+                </div>
+
+                <div class="sub-info">
+                    <div class="title-name">
+                        <span>Credit</span>
+                    </div>
+                    <div class="title-detail">{{customer.credit}}</div>
+                </div>
+            </div>
+        <div id="notice">
+            <p >Not a member yet, join us for more benefits!</p>
+            <button @click="" class="button">upgrade account</button>
+        </div>
+        </div>
+    </main>
+    <footer>
+      @Copyright by Soul Cafe
+    </footer>
+</div>
+    <script src="js/axios/axios.min.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+
+            data() {
+                return {
+                    customer: {
+                        firstname:'',
+                        lastname:'',
+                        username:'',
+                        email:'',
+                        phone:'',
+                        gender:'',
+                        credit:0
+                    },
+                    isEdit:false,
+                    emailErr:false,
+                    phoneErr:false,
+                    firstnameErr: false,
+                    lastnameErr: false,
+                    originalCustomer: {}
+                };
+            },
+
+            mounted() {
+                this.customer=JSON.parse(localStorage.getItem('customer')).data
+            },
+            methods:{
+                updateUser(){
+                    const customer = this.customer;
+                    let valid = true;
+
+                    if(customer.firstname === ''){
+                        this.firstnameErr = true;
+                        valid = false;
+                    }else{
+                        this.firstnameErr = false;
+
+                    }
+
+                    if(customer.lastname === ''){
+                        this.lastnameErr = true;
+                        valid = false;
+                    }else{
+                        this.lastnameErr = false;
+                    }
+
+                    const emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+                    const phonePattern = /^04[0-9]{8}$/
+
+                    if(!emailPattern.test(customer.email)){
+                        this.emailErr = true;
+                        valid = false;
+                    }else{
+                        this.emailErr = false;
+                    }
+
+                    if(!phonePattern.test(customer.phone)){
+                        this.phoneErr = true;
+                        valid = false;
+                    }else{
+                        this.phoneErr = false;
+                    }
+                    if(valid === false){
+                        this.$message("Please enter your details correctly");
+                        return;
+                    }
+                    axios({
+                        method: 'put',
+                        url: '/customer/profile',
+                        data:customer
+                    }).then(res => {
+                        if(res.data.code === 200){
+                            this.$message("Update profile successful");
+                            this.isEdit=false;
+                        }else{
+                            this.$message("Update profile fail");
+                            this.cancel();
+                        }
+                    });
+                },
+                edit(){
+                    this.isEdit=true;
+                },
+                cancel(){
+                    this.isEdit=false;
+                    this.customer= JSON.parse(localStorage.getItem('customer')).data;
+                },
+                logout(){
+                    const customer = this.customer;
+                    axios({
+                        method: 'post',
+                        url: '/customer/logout',
+                        params: {
+                            token: customer.token
+                        }
+                    }).then(res =>{
+                        localStorage.removeItem('customer');
+                        window.location.href = '/homepage.html';
+                    })
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

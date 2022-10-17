@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heading and footer</title>
+    <link rel="stylesheet" href="css/headingFooter.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+    <header>
+
+        <div class = "shopname">
+            <img src="image/logo.svg" alt="Cafe logo">
+            <h1>Soul Cafe</h1>   
+        </div>
+        
+        <div class = "icons">
+            <a href=""><img src="image/profile.svg" alt="profile"></a>
+            <a href=""><img src="image/cart.svg" alt="cart"></a>
+            <img src="image/logout.svg" alt="logout">
+        </div>
+    </header>
+
+    <main>
+        <a href="homepage.html">
+            <img src="image/backarrow.png" alt="back">
+            <p>Continue Shopping</p>
+        </a> 
+
+        <h3><em><b>Your Cart</b> </em> </h3>
+        <div class = "items">
+            <h3>Your Order (2 ITEM)</h3>
+
+            <div class = "item">
+                
+                <div>
+                    <img src="image/espresso.png" alt="espresso">
+                </div>
+
+                <div>
+                    <p><b>espresso</b></p>
+                    <p>size:slfhk</p>
+                    <p>base:kdlsfj</p>
+               
+
+                    <div class="qty">
+                        <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>
+                        <label for="quantity"></label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">
+                        <button onclick="increase()"><img src="image/add.png" alt="increase"></button>
+                    </div>                   
+                </div>
+
+                <div>
+                    <p><b>$5</b> </p>
+                    <img src="image/bin.png" alt="">
+                </div>
+            </div>
+
+            <div class = "item">
+                
+                <div>
+                    <img src="image/latte.png" alt="latte">
+                </div>
+
+                <div>
+                    <p><b>latte</b></p>
+                    <p>size:slfhk</p>
+                    <p>base:kdlsfj</p>
+               
+
+                    <div class="qty">
+                        <button onclick="decrease()"><img src="image/minus.png" alt="decrease"></button>
+                        <label for="quantity"></label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1">
+                        <button onclick="increase()"><img src="image/add.png" alt="increase"></button>
+                    </div>                   
+                </div>
+
+                <div>
+                    <p><b>$5</b> </p>
+                    <img src="image/bin.png" alt="">
+                </div>
+            </div>
+
+        </div>
+
+        <p>ORDER TOTAL: 11$</p>
+    
+        <button>checkout</button>
+        
+        
+
+    </main>
+
+    <footer>
+        @Copywrite by Soul Cafe
+    </footer>
+</body>
+</html>

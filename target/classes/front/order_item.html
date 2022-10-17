@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>order_item</title>
+    <link rel="stylesheet" href="css/order_item.css">
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div class="item">
+        <a href="" class="cross"><img src="image/cross.svg" alt="cross"></a>
+        <div class = "info">
+            <img src="image/flatWhite.png" alt="flatWhite">
+            <div class = "intro" id="intro">
+                <p>
+                    {{name}}
+                </p>
+                <p>
+                    origin:
+                </p>
+                <p>{{kal}}kal</p>
+                <p>$ <span>{{price}} </span></p>
+            </div>
+        </div>
+        <form>
+            <div class="choose">
+                <p>Choose Size:</p>
+                <select class = "type">
+                    <option value="small">small</option>
+                    <option value="medium">medium <span>+$0.5</span></option>
+                    <option value="large">large <span>+$1.0</span></option>
+                </select>
+            </div>
+
+            <div class="choose">
+                <p>Choose Base:</p>
+                <select class="type">
+                    <option value ="fc">full cream</option>
+                    <option value ="diet">diet <span> +$0.5</span></option>
+                    <option value="oat">oat milk<span> +$1.0</span></option>
+                    <option value="soy">soy milk<span> +$1.0</span></option>
+                </select>
+            </div>
+            <button @click=alert("success!")>add to cart</button>
+        </form>
+    </div>
+    <script type="text/javascript">
+
+        new Vue({
+            el:'#intro',
+            data:{
+                name:'flat white',
+                price:5.5,
+                kal:135
+            },
+            methods:{
+                done(){
+                    alert("success!")
+                }
+            }
+        })
+        console.log(v)
+    </script>
+</body>
+</html>

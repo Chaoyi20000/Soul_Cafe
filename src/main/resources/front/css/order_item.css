@@ -1,0 +1,68 @@
+
+.item{
+
+    background: #FFFF;
+    border-radius: 30px;
+    padding: 40px;
+    height: fit-content;
+    width:560px;
+}
+.info{
+    display: flex;
+    text-align: left;
+    width: 50%;
+    padding-right: 10px;
+    margin-left: 54px;
+}
+form{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+}
+.cross{
+    margin-left: 90%;
+}
+
+
+.intro{
+    text-align: left;
+    width: 50%;
+    padding-right: 10px;
+    margin-left: 28%
+}
+
+.into p {
+    color: #572418;
+    font-size: 22px;
+}
+option span{
+    color: red;
+}
+.choose{
+    padding-inline-start: 9%;
+}
+
+.type a {
+    display: inline;
+    margin-right: 30px;
+}
+.type a span{
+    display: inline;
+}
+.number{
+    margin-top: 25px;
+}
+input{
+    width: 40%;
+}
+button{
+    display: block;
+    border: none;
+    font-size: 18px;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: #9E591F;
+    margin: 30px auto auto;
+}
