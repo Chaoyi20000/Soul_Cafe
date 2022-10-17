@@ -1,0 +1,198 @@
+main{
+
+    padding-top: 20px;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+main a{
+    text-decoration: none;
+    color: #9E591F;
+}
+.back{
+    display: flex;
+    color: #9E591F;
+}
+
+.switcher{
+    border: none;
+    width: 100%;
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-bottom: 4%;
+}
+
+.swtbtn{
+    margin-right: 10%;
+    padding: 25px 0;
+    border: none;
+    background: #F7F7F7;
+    font-size: 20px;
+}
+.orderStyle{
+    border-bottom: 2px solid #9E591F;
+    color: #9E591F;
+    font-weight: bold;
+}
+.statusNumberTime{
+    margin-top: 4%;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 7%;
+    font-size: 15px;
+    row-gap: 11px;
+}
+.time span, .statusNumberTime span, .contact span{
+    color: #9E591F;
+}
+.total span, .price span{
+    color: red;
+    display: inline-block;
+}
+.hr-tr{
+    border: 0;
+    padding: 3px;
+    background: repeating-linear-gradient(135deg, #9E591F 0px, #9E591F 1px, transparent 1px, transparent 6px);
+}
+.detail{
+    border: 2px solid #9E591F;
+    padding: 3%;
+    width: 400px;
+    margin: 15px auto;
+}
+.item {
+    max-width: 600px;
+    grid-template-columns: repeat(1, 20% 30% 25% 25%);
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+table{
+    width: 100%;
+    height: 60px;
+}
+
+.total{
+    margin-top: 5%;
+    margin-left: 76%;
+}
+.contact{
+    margin-top:20%;
+}
+
+.tag{
+    color: #c26c25;
+    padding: 1px;
+}
+
+.title{
+    margin-bottom: 50px;
+}
+
+.statusBrown{
+    float: right;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: brown;
+    color: brown;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.statusGreen{
+    float: right;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: green;
+    color: green;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.statusRed{
+    float: right;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: red;
+    color: red;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.orderItem{
+    height: 100px;
+    overflow: auto
+}
+
+.orderTotal{
+    float: right;
+    margin-top: 10px
+}
+
+.prompt{
+    color: blue;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.outerContainer{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1300px) {
+    .outerContainer{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto
+    }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1100px) {
+    .outerContainer{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto
+    }
+}
+
+@media screen and (max-width: 1100px) and (min-width: 900px) {
+    .outerContainer{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .detail{
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .order{
+        display: flex;
+        flex-direction: column;
+    }
+    .outerContainer{
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .detail{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

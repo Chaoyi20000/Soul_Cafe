@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my orders</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="css/order.css">
+    <link rel="stylesheet" href="css/headingFooter.css">
+</head>
+<body>
+<header>
+    <a href="homepage.html">
+        <img src="image/home.svg" alt="profile" style="width: 40px; margin-left: 10px">
+    </a>
+    <div class = "shopname" style="margin: 0">
+        <a href="homepage.html">
+            <img src="image/logo.svg" alt="Cafe logo">
+        </a>
+        <h1>Soul Cafe</h1>
+    </div>
+
+    <div class = "icons">
+        <a href="profile.html"><img src="image/profile.svg" alt="profile"></a>
+        <a href="cart.html"><img src="image/cart.svg" alt="cart"></a>
+        <a href="order.html"><img src="image/order.svg" alt="order"></a>
+        <a href="homepage.html"><img src="image/logout.svg" alt="logout" @click="logout()"></a>
+    </div>
+</header>
+<main id="app">
+    <div class="outerContainer">
+    <div class="title">
+        <h1>My Orders</h1>
+        <div style="color: #7a7a7a">Please contact <span style="color: #9E591F"><b>soulcafeteam@gmail.com</b></span> if you have question regarding with your order.</div>
+
+    </div>
+        <div style="color: #9E591F"><b>{{emptyPrompt}}</b></div>
+    <div class="order" v-loading="loading">
+        <div class="detail" v-for="order in orders">
+            <div class="orderNumber">
+                <div>
+                    <b><span>ORDER NUMBER: {{order.number}}</span></b>
+                    <span v-if="order.status === 1" class="statusBrown">IN PROGRESS</span>
+                    <span v-if="order.status === 2" class="statusGreen">COMPLETED</span>
+                    <span v-if="order.status === 3" class="statusRed">CANCELLED</span>
+                </div>
+            </div>
+            <hr class="hr-tr">
+            <h5>ORDER DETAILS</h5>
+            <div class="orderItem">
+                <table>
+                    <tr v-for="item in order.orderDetails">
+                        <td><b>{{item.productName}}</b></td>
+                        <td>Size: <span class="tag">{{item.size}}</span></td>
+                        <td>Base:
+                            <span class="tag">{{item.extra}}</span>
+                        </td>
+                        <td>X{{item.quantity}}</td>
+                        <td><span>${{item.amount}}</span></td>
+                    </tr>
+                </table>
+            </div>
+            <hr>
+            <div class="orderTotal"><b>ORDER TOTAL: <span style="color: red">${{order.total}}</span></b></div>
+        </div>
+    </div>
+    <div v-show="showLoading" class="prompt" @click="loadMore()">{{msg}}</div>
+    </div>
+
+</main>
+<footer>
+    @Copyright by Soul Cafe
+</footer>
+<script src="js/axios/axios.min.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                orders: [],
+                currentPage: 1,
+                loading: true,
+                customerId: undefined,
+                showLoading: true,
+                msg: '',
+                emptyPrompt:''
+            }
+        },
+        mounted() {
+            const customer = JSON.parse(localStorage.getItem('customer'));
+            this.customerId = customer.data.id;
+            const params = {
+                page: this.currentPage,
+                size: 4,
+                customerId: this.customerId
+            };
+            axios({
+                method: 'get',
+                url: '/order',
+                params
+            }).then(res => {
+                this.orders = res.data.data;
+                this.loading = false;
+                this.page += 1;
+                if(this.orders.length === 4){
+                    this.msg = 'click here to view more orders';
+                    this.currentPage += 1;
+                }else{
+                    this.showLoading = false;
+                    if(this.orders.length === 0){
+                        this.emptyPrompt = 'You do not have any orders at the moment.';
+                    }
+                }
+            });
+        },
+        methods:{
+            loadMore(){
+                this.showLoading = false;
+                this.loading = true;
+                const params = {
+                    page: this.currentPage,
+                    size: 4,
+                    customerId: this.customerId
+                };
+                axios({
+                    method: 'get',
+                    url: '/order',
+                    params
+                }).then(res => {
+                    const orders = res.data.data;
+                    console.log(orders)
+                    if(orders.length > 0){
+                        this.orders.push(...orders);
+                        console.log(orders.length)
+                        if(orders.length === 4){
+                            this.currentPage += 1;
+                            this.showLoading = true;
+                        }
+                    }else{
+                        this.showLoading = false;
+                    }
+                });
+                this.loading = false;
+            },
+            logout(){
+                const customer = this.customer;
+                axios({
+                    method: 'post',
+                    url: '/customer/logout',
+                    params: {
+                        token: customer.token
+                    }
+                }).then(res =>{
+                    localStorage.removeItem('customer');
+                    window.location.href = '/homepage.html';
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

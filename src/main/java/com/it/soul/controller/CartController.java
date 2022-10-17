@@ -1,0 +1,70 @@
+package com.it.soul.controller;
+
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.it.soul.common.R;
+import com.it.soul.model.Cart;
+import com.it.soul.model.Customer;
+import com.it.soul.model.Product;
+import com.it.soul.service.CartService;
+import com.it.soul.service.ProductService;
+import com.it.soul.utils.TokenUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Slf4j
+@RestController
+@RequestMapping("/cart")
+public class CartController {
+    @Autowired
+    private CartService cartService;
+
+    @PostMapping
+    public R<String> addCart(@RequestBody Cart cart){
+
+        LambdaQueryWrapper<Cart> qw = new LambdaQueryWrapper<>();
+        qw = qw.eq(Cart::getProductName, cart.getProductName()).eq(Cart::getExtra, cart.getExtra())
+                .eq(Cart::getSize, cart.getSize()).eq(Cart::getCustomerId, cart.getCustomerId());
+
+        Cart exist = cartService.getOne(qw);
+
+        if(exist != null){
+            exist.setQuantity(exist.getQuantity() + 1);
+            cartService.updateById(exist);
+        }else{
+            cart.setQuantity(1);
+            cartService.save(cart);
+        }
+
+        return R.success("Add to cart successfully");
+    }
+    @GetMapping
+    public R<List<Cart>> getCart(@RequestParam String token){
+        Customer customer = TokenUtils.getCustomer(token);
+        LambdaQueryWrapper<Cart> qw = new LambdaQueryWrapper<>();
+        qw.eq(Cart::getCustomerId, customer.getId());
+        List<Cart> carts = cartService.list(qw);
+        return R.success(carts);
+    }
+
+    @PutMapping
+    public R<String> changeCart(@RequestBody Cart cart){
+        cartService.updateById(cart);
+        return R.success("change the cart successfully");
+    }
+
+    @DeleteMapping
+    public R<String> deleteCart(@RequestBody Cart cart){
+        cartService.removeById(cart);
+        return R.success("delete the cart successfully");
+    }
+
+}

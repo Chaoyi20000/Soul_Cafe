@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: soul_coffee
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://bf34fb52b16c55:9b88cae4@us-cdbr-east-06.cleardb.net/heroku_040f547673c40fe?reconnect=true
+      username: bf34fb52b16c55
+      password: 9b88cae4
+  mail:
+    host: smtp.gmail.com
+    username: soulcafeteam@gmail.com
+    password: fjsrszzshuyxvgqv
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID

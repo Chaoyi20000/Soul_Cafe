@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://kit.fontawesome.com/34e820dd12.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/axios/axios.min.js"></script>
+
+</head>
+<body>
+    <header>
+
+        <a href="homepage.html"><img src="image/arrowLeft.svg" alt="back"></a>
+        <span> back</span>
+
+        <div class = "shopname">
+            <a href="homepage.html"><img src="image/logo.svg" alt="Cafe logo"></a>
+            <h1>Soul Cafe</h1>   
+        </div>
+         
+    </header>
+
+    <main>
+            <div class="registerContainer" v-loading="loading" element-loading-background="rgba(255, 255, 255, 0.5)">
+                <div class="signTitle">Sign In</div>
+                <div class="signPrompt">Login to order our products and enjoy drinkings!</div>
+                <form :model="form">
+                    <label for="uname"><i class="fa-solid fa-user"></i>Username</label><br>
+                    <input :class="{'errorInput':isError}" type="text" id="uname" name="uname" v-model="username"><br>
+                    <br>
+                    <label for="psd"><i class="fa-solid fa-key"></i>Password</label><br>
+                    <input :class="{'errorInput':isError}" type="password" id="psd" name="psd" v-model="password"><br>
+                    <br>
+                </form>
+                <div style="text-align: center"><button class="loginButton" @click="login()">Login</button></div>
+                <div class="registerPrompt">Do not have an account? <a href="register.html">Register</a> one</div>
+            </div>
+    </main>
+
+    <footer>
+        @Copyright by Soul Cafe
+    </footer>
+
+    <script>
+        new Vue({
+            el:"main",
+            data() {
+                return {
+                    username:'',
+                    password:'',
+                    isError:false,
+                    loading:false,
+                };
+            },
+            created() {
+            },
+            mounted(){
+            },
+            methods: {
+                login(){
+                    if(this.username.length > 0 && this.password.length > 0){
+                        this.loading = true;
+                        this.isError = false;
+                        axios({
+                            method: 'post',
+                            url: '/customer/login',
+                            data:{
+                                username: this.username,
+                                password: this.password
+                            }
+                        }).then(res => {
+                            if(res.data.code === 200){
+                                localStorage.setItem('customer',JSON.stringify(res.data))
+                                window.location.href= '/homepage.html'
+                            }else{
+                                this.$message(res.data.msg);
+                                this.isError = true;
+                                this.loading = false;
+                            }
+                        }).catch(err => {
+                        })
+                    }else{
+                        this.$message('Please enter your details correctly');
+                        this.isError = true;
+                    }
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
