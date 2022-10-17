@@ -1,0 +1,158 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../image/img.png');
+
+}
+
+main{
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+main a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+a img, a p{
+    display: inline;
+}
+
+.profile{
+    align-items: center;
+    width: 700px;
+    padding: 30px 20px;
+    border-radius: 20px;
+    background: rgba(237, 240, 249, 0.8);
+    backdrop-filter: blur(10px);
+    margin: auto;
+}
+
+
+
+h1{
+    font-weight: normal;
+    color: black;
+}
+h1 p{
+    margin-top: -10px;
+}
+
+.img-name-gender{
+    text-align: center;
+}
+.title{
+    margin-left: 10%;
+}
+.editable-container{
+    margin-top: 40px;
+    display: flex;
+}
+
+.basic-info-container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+
+}
+
+.sub-info{
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin: 10px;
+    box-shadow: 2px 2px 2px #a6a6a6;
+    border-radius: 10px;
+}
+
+.title-name{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.title-detail{
+    color: #3a3a3a;
+}
+
+.big-title{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+
+.name{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+input[type="text"]{
+    width: 250px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background: transparent;
+    border-radius: 30px;
+    border: solid #9F9F9F;
+    outline: none;
+}
+
+.errorInput{
+    border: solid #ff5d5d !important;
+}
+
+.done-cancel{
+    display: flex;
+    justify-content:flex-end;
+}
+.edit{
+    margin-top: 10px;
+    display: flex;
+    justify-content:flex-end;
+    margin-left: 10px;
+}
+.edit p{
+    font-size: 20px;
+    color: #9E591F;
+    font-weight: bold;
+
+}
+
+#notice{
+    margin-top: 10%;
+    text-align: center;
+    font-weight: bold;
+}
+
+button{
+    display: block;
+    border: none;
+    font-size: 18px;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: #9E591F;
+    margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .basic-info-container{
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    .profile{
+        width: 400px;
+    }
+}
+
