@@ -133,7 +133,7 @@ public class OrderController {
         return R.success(ordersList);
     }
 
-    @Scheduled(fixedRate = 180000)
+    @Scheduled(fixedRate = 10000)
     public void completeOrder(){
         Orders order = ordersQueue.poll();
         if(order != null){
