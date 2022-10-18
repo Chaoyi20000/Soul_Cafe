@@ -51,6 +51,7 @@ public class OrderController {
 
     private Queue<Orders> ordersQueue = new LinkedList<>();
 
+
     @Transactional
     @PostMapping
     public R<String> checkout(@RequestBody OrderDto orderInfo, @RequestParam String token){
@@ -132,7 +133,7 @@ public class OrderController {
         return R.success(ordersList);
     }
 
-    @Scheduled(fixedRate = 180000)
+    @Scheduled(fixedRate = 10000)
     public void completeOrder(){
         Orders order = ordersQueue.poll();
         if(order != null){

@@ -64,7 +64,7 @@ public class TestCustomerController {
         Assertions.assertTrue(res.contains("code=0"));
     }
 
-    @Test
+    /*@Test
     void testRegisterSuccessful(){
         MockHttpServletRequest request = new MockHttpServletRequest();
         Customer c = new Customer();
@@ -77,7 +77,7 @@ public class TestCustomerController {
         c.setLastname("chen");
         String res = customerController.register(c).toString();
         Assertions.assertTrue(res.contains("code=200"));
-    }
+    }*/
 
     @Test
     void testRegisterUnsuccessful(){
