@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
+<div id="app">
     <header>
         <div class = "shopname">
             <a href="homepage.html">
@@ -30,7 +31,7 @@
         </div>
     </header>
 
-    <main id = "app">
+    <main>
         <a href="homepage.html">
             <img src="image/arrowLeft.svg" alt="back" >
             <p>Continue Shopping</p>
@@ -115,6 +116,7 @@
     <footer>
         @Copyright by Soul Cafe
     </footer>
+</div>
     <script src="js/axios/axios.min.js"></script>
     <script>
         new Vue({
@@ -282,12 +284,12 @@
                 },
 // remember to log out in the cart page
                 logout(){
-                    const customer = this.customer;
+                    const customer = JSON.parse(localStorage.getItem('customer'));
                     axios({
                         method: 'post',
                         url: '/customer/logout',
                         params: {
-                            token: customer.token
+                            token: customer.data.token
                         }
                     }).then(res =>{
                         localStorage.removeItem('customer');

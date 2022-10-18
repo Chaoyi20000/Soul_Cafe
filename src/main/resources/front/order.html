@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="css/headingFooter.css">
 </head>
 <body>
+<div id="app">
 <header>
+
     <a href="homepage.html">
         <img src="image/home.svg" alt="profile" style="width: 40px; margin-left: 10px">
     </a>
@@ -28,7 +30,7 @@
         <a href="homepage.html"><img src="image/logout.svg" alt="logout" @click="logout()"></a>
     </div>
 </header>
-<main id="app">
+<main>
     <div class="outerContainer">
     <div class="title">
         <h1>My Orders</h1>
@@ -72,6 +74,7 @@
 <footer>
     @Copyright by Soul Cafe
 </footer>
+    </div>
 <script src="js/axios/axios.min.js"></script>
 <script>
     new Vue({
@@ -144,12 +147,12 @@
                 this.loading = false;
             },
             logout(){
-                const customer = this.customer;
+                const customer = JSON.parse(localStorage.getItem('customer'));
                 axios({
                     method: 'post',
                     url: '/customer/logout',
                     params: {
-                        token: customer.token
+                        token: customer.data.token
                     }
                 }).then(res =>{
                     localStorage.removeItem('customer');
